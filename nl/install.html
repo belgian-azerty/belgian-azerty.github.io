@@ -3,38 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Installeren op een systeem dat al draait · Belgische AZERTY voor Linux</title>
-<meta name="description" content="Installeren op een systeem dat al draait">
+<title>Installeren op Linux Mint 22.3 en Zorin OS 18.1</title>
+<meta name="description" content="Drie stappen in de terminal: keyd uit de keyd-team PPA, twee pakketten, afmelden. Daarna geeft Ctrl+Alt+é een @ en werkt Caps Lock zoals op Windows.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
-<link rel="alternate" hreflang="nl" href="../nl/install.html"><link rel="alternate" hreflang="fr" href="../fr/install.html"><link rel="alternate" hreflang="en" href="../en/install.html">
+<link rel="canonical" href="https://belgian-azerty.github.io/nl/install.html">
+<link rel="alternate" hreflang="nl" href="https://belgian-azerty.github.io/nl/install.html">
+<link rel="alternate" hreflang="fr" href="https://belgian-azerty.github.io/fr/install.html">
+<link rel="alternate" hreflang="en" href="https://belgian-azerty.github.io/en/install.html">
+<link rel="alternate" hreflang="x-default" href="https://belgian-azerty.github.io/nl/install.html">
+<link rel="alternate" type="text/markdown" href="install.md">
 </head>
 <body>
 <a class="skip" href="#main">Naar de inhoud</a>
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
-    <nav class="nav" aria-label="Menu"><a href="install.html" aria-current="page">Installeren</a><a href="verify.html">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="testing.html">Hoe we testen</a></nav>
+    <nav class="nav" aria-label="Menu"><a href="install.html" aria-current="page">Installeren</a><a href="verify.html">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html">Problemen</a><a href="testing.html">Hoe we testen</a></nav>
     <nav class="langs" aria-label="Taal"><a href="../nl/install.html" hreflang="nl" lang="nl" aria-current="true">NL</a><a href="../fr/install.html" hreflang="fr" lang="fr">FR</a><a href="../en/install.html" hreflang="en" lang="en">EN</a></nav>
   </div>
 </header>
 <main id="main">
+<p class="wrap ver">Voor versie 0.9.10 (31 oktober 2026). Nieuwste versie: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">releasepagina</a>.</p>
 <article class="wrap prose"><h1>Installeren op een systeem dat al draait</h1>
 <p>Dit is voor Linux Mint 22.3 en Zorin OS 18.1. Je typt drie keer iets in een terminal.</p>
-<p><strong>Stap 1. Voeg keyd toe.</strong> keyd is het programma dat Ctrl+Alt als AltGr laat werken. Ubuntu 24.04, de basis van Mint 22
+<h2>Stap 1. Voeg keyd toe.</h2>
+<p>keyd is het programma dat Ctrl+Alt als AltGr laat werken. Ubuntu 24.04, de basis van Mint 22
 en Zorin 18, heeft het niet. De keyd-team PPA heeft het wel. Die PPA wordt onderhouden door de maintainer van Debians
 keyd-pakket; ze hoort niet bij het keyd-project zelf.</p>
 <pre><code>sudo add-apt-repository ppa:keyd-team/ppa
 sudo apt update
 sudo apt install keyd
 </code></pre>
-<p><strong>Stap 2. Installeer onze twee pakketten.</strong> Download ze van de <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.10">releasepagina van 0.9.10</a> in een lege map. Open daar een
+<h2>Stap 2. Installeer onze twee pakketten.</h2>
+<p>Download ze van de <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.10">releasepagina van 0.9.10</a> in een lege map. Open daar een
 terminal en typ:</p>
 <pre><code>sudo apt install ./keyd-belgian-windows_0.9.10_all.deb ./belgian-azerty-windows_0.9.10_all.deb
 sudo be-azerty-fix system
 </code></pre>
 <p>Wil je een komma op het numeriek klavier, typ dan <code>sudo DECIMAL=comma be-azerty-fix system</code>.</p>
-<p><strong>Stap 3. Meld je af en weer aan.</strong> Met <code>be-azerty-fix check</code> zie je wat elke instelling zegt.</p>
+<h2>Stap 3. Meld je af en weer aan.</h2>
+<p>Met <code>be-azerty-fix check</code> zie je wat elke instelling zegt.</p>
 <p><strong>Liever klikken?</strong> Na de installatie staat <strong>Belgisch toetsenbord</strong> in het menu. Daar kies je tussen het
 Windows-profiel en het Linux-profiel, met een punt of een komma.</p>
 <p><strong>Goed om te weten</strong></p>

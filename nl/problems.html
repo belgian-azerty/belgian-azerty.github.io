@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problemen en oplossingen: Belgisch toetsenbord op Linux</title>
+<meta name="description" content="Ctrl+Alt+é geeft geen @, Caps Lock geeft geen cijfers, de stick start niet in het Belgisch AZERTY: per probleem de oorzaak, de oplossing en wat getest is.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="canonical" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" hreflang="nl" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" hreflang="fr" href="https://belgian-azerty.github.io/fr/problems.html">
+<link rel="alternate" hreflang="en" href="https://belgian-azerty.github.io/en/problems.html">
+<link rel="alternate" hreflang="x-default" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" type="text/markdown" href="problems.md">
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installeren</a><a href="verify.html">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problemen</a><a href="testing.html">Hoe we testen</a></nav>
+    <nav class="langs" aria-label="Taal"><a href="../nl/problems.html" hreflang="nl" lang="nl" aria-current="true">NL</a><a href="../fr/problems.html" hreflang="fr" lang="fr">FR</a><a href="../en/problems.html" hreflang="en" lang="en">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<p class="wrap ver">Voor versie 0.9.10 (31 oktober 2026). Nieuwste versie: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">releasepagina</a>.</p>
+<article class="wrap prose"><h1>Problemen en oplossingen</h1>
+<p>Hier staan de problemen die we zelf gezien en getest hebben, in de woorden die je zelf zou typen. Dit geldt voor
+Linux Mint 22.3 en Zorin OS 18.1. Op andere systemen is niets getest.</p>
+<h2>Ctrl+Alt+é geeft geen @, en Ctrl+Alt+E geeft geen €</h2>
+<p><strong>Oorzaak.</strong> Op Linux werkt alleen de AltGr-toets voor die tekens. Ctrl+Alt doet dat niet, zoals op Windows wel.</p>
+<p><strong>Oplossing.</strong> Installeer keyd en ons pakket keyd-belgian-windows. <a class="more" href="install.html">Naar installeren ›</a></p>
+<p><strong>Getest:</strong> in emulators voor Mint en Zorin, en met de Zorin-stick op één echte laptop (versie 0.9.8).</p>
+<h2>AltGr+4 en AltGr+5 geven ¼ en ½ in plaats van { en [</h2>
+<p><strong>Oorzaak.</strong> De Belgische indeling van Linux heeft daar andere tekens dan Windows.</p>
+<p><strong>Oplossing.</strong> Hetzelfde pakket keyd-belgian-windows. <a class="more" href="install.html">Naar installeren ›</a></p>
+<p><strong>Getest:</strong> in de emulator op de testlaptop (0.9.8 en 0.9.9).</p>
+<h2>Met Caps Lock aan geeft de bovenste rij geen cijfers</h2>
+<p>Op Windows geeft de bovenste rij met Caps Lock aan de cijfers 1 2 3. Op Linux niet.</p>
+<p><strong>Oplossing.</strong> Ons pakket belgian-azerty-windows en daarna <code>sudo be-azerty-fix system</code>. Op Mint staat de
+Windows-Caps Lock dan aan. Op Zorin zet je hem zelf aan met <code>sudo CAPS=windows be-azerty-fix system</code>.</p>
+<p><strong>Let op, op Zorin:</strong> door een fout in GNOME kunnen zes toetsen stoppen na Caps Lock in een wachtwoordveld. Meld je
+dan af en weer aan. <a class="more" href="https://github.com/belgian-azerty/belgian-azerty-linux#caps-lock-on-zorin">Uitleg in de README ›</a></p>
+<p><strong>Getest:</strong> in emulators.</p>
+<h2>Het aanmeldscherm, een nieuwe gebruiker of een reset krijgt geen Belgisch toetsenbord</h2>
+<p><strong>Oorzaak.</strong> Linux bewaart de indeling op meerdere plaatsen. Niet overal staat Belgisch voorop.</p>
+<p><strong>Oplossing.</strong> <code>sudo be-azerty-fix system</code> zet Belgisch voorop op al die plaatsen. Je andere indelingen blijven staan.</p>
+<p><strong>Getest:</strong> in emulators: aanmeldscherm, nieuwe gebruikers, reset van de instellingen, herstart en een volledige
+systeemupdate.</p>
+<h2>Het numeriek klavier typt een punt en je wilt een komma (of omgekeerd)</h2>
+<p><strong>Oplossing.</strong> <code>sudo DECIMAL=comma be-azerty-fix system</code> voor een komma, <code>sudo DECIMAL=period be-azerty-fix system</code>
+voor een punt. Of kies het in het menu-item <strong>Belgisch toetsenbord</strong>.</p>
+<p><strong>Getest:</strong> in emulators.</p>
+<h2>De live-USB of het installatieprogramma start zonder Belgisch toetsenbord</h2>
+<p><strong>Oorzaak.</strong> Mint start met een Amerikaans toetsenbord. Zorin vraagt een taal, maar heeft geen Belgische keuze.</p>
+<p><strong>Oplossing.</strong> Onze stick, of zelf in het startmenu: druk op <code>e</code> en zet <code>keyboard-configuration/layoutcode=be</code> achter de
+regel die met <code>linux</code> begint. <a class="more" href="stick.html">Naar de stick ›</a></p>
+<p><strong>Getest:</strong> in emulators (UEFI en BIOS), en op één echte laptop: de Zorin-stick (0.9.8) en de Mint-stick (0.9.9, door
+Younes gemeld).</p>
+<p><strong>Nog niet opgelost:</strong> bij de eerste start typte het wifi-wachtwoordvenster van het installatieprogramma één keer als
+een Amerikaans toetsenbord. Na een herstart niet meer.</p>
+<h2>Shift+AltGr op ù, µ en = geeft ǎ, ă of ȧ in plaats van ´, ` of ~</h2>
+<p><strong>Oplossing.</strong> Vanaf 0.9.9 gebeurt dit vanzelf bij een nieuwe installatie. Kom je van 0.9.8, typ dan
+<code>sudo ACCENTS=windows be-azerty-fix system</code>.</p>
+<p><strong>Getest:</strong> in testcontainers en in de emulator op de testlaptop.</p>
+<h2>´ en dan spatie geeft ' in plaats van ´</h2>
+<p><strong>Oplossing.</strong> <code>be-azerty-fix accent-space on</code> (zonder sudo), daarna afmelden en weer aanmelden.</p>
+<p><strong>Getest:</strong> in GTK-programma's en in de Terminal van Mint en Zorin. Niet getest in Qt-programma's en VS Code.</p>
+<h2>Het systeem toont een extra Amerikaanse indeling (be,us)</h2>
+<p>Dat is geen fout van dit project. De desktop zelf voegt die toe in Nederlandse en Duitse sessies. Geen enkele toets
+schakelt ernaar, dus je blijft Belgisch typen.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Gemaakt met AI-hulp (Claude). Niet verbonden aan Linux Mint of Zorin OS. Een klein vrijwilligersproject.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">Hoe we testen</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">MIT-licentie</a> · <a href="../nl/problems.html" lang="nl">NL</a> <a href="../fr/problems.html" lang="fr">FR</a> <a href="../en/problems.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>

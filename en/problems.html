@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problems and fixes: Belgian keyboard on Linux</title>
+<meta name="description" content="Ctrl+Alt+é does not give @, Caps Lock gives no digits, the stick does not start in Belgian AZERTY: the cause, the fix and what was tested, for each problem.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="canonical" href="https://belgian-azerty.github.io/en/problems.html">
+<link rel="alternate" hreflang="nl" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" hreflang="fr" href="https://belgian-azerty.github.io/fr/problems.html">
+<link rel="alternate" hreflang="en" href="https://belgian-azerty.github.io/en/problems.html">
+<link rel="alternate" hreflang="x-default" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" type="text/markdown" href="problems.md">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Install</a><a href="verify.html">Check download</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problems</a><a href="testing.html">How we test</a></nav>
+    <nav class="langs" aria-label="Language"><a href="../nl/problems.html" hreflang="nl" lang="nl">NL</a><a href="../fr/problems.html" hreflang="fr" lang="fr">FR</a><a href="../en/problems.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<p class="wrap ver">For version 0.9.10 (31 October 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
+<article class="wrap prose"><h1>Problems and fixes</h1>
+<p>These are the problems we have seen and tested ourselves, in the words you would type yourself. This applies to
+Linux Mint 22.3 and Zorin OS 18.1. Nothing has been tested on other systems.</p>
+<h2>Ctrl+Alt+é does not give @, and Ctrl+Alt+E does not give €</h2>
+<p><strong>Cause.</strong> On Linux, only the AltGr key gives these characters. Ctrl+Alt does not, while on Windows it does.</p>
+<p><strong>Fix.</strong> Install keyd and our keyd-belgian-windows package. <a class="more" href="install.html">Go to install ›</a></p>
+<p><strong>Tested:</strong> in emulators for Mint and Zorin, and with the Zorin stick on one real laptop (version 0.9.8).</p>
+<h2>AltGr+4 and AltGr+5 give ¼ and ½ instead of { and [</h2>
+<p><strong>Cause.</strong> Linux's Belgian layout has different characters there than Windows.</p>
+<p><strong>Fix.</strong> The same keyd-belgian-windows package. <a class="more" href="install.html">Go to install ›</a></p>
+<p><strong>Tested:</strong> in the emulator on the test laptop (0.9.8 and 0.9.9).</p>
+<h2>With Caps Lock on, the top row gives no digits</h2>
+<p>On Windows, the top row gives the digits 1 2 3 when Caps Lock is on. On Linux it does not.</p>
+<p><strong>Fix.</strong> Our belgian-azerty-windows package, then <code>sudo be-azerty-fix system</code>. On Mint the Windows Caps Lock is then
+on. On Zorin you switch it on yourself with <code>sudo CAPS=windows be-azerty-fix system</code>.</p>
+<p><strong>Watch out, on Zorin:</strong> because of a GNOME bug, six keys can stop working after Caps Lock in a password field. Log
+out and back in. <a class="more" href="https://github.com/belgian-azerty/belgian-azerty-linux#caps-lock-on-zorin">Explained in the README ›</a></p>
+<p><strong>Tested:</strong> in emulators.</p>
+<h2>The login screen, a new user or a settings reset has no Belgian keyboard</h2>
+<p><strong>Cause.</strong> Linux stores the layout in several places. Belgian is not first everywhere.</p>
+<p><strong>Fix.</strong> <code>sudo be-azerty-fix system</code> puts Belgian first in all of those places. Your other layouts stay.</p>
+<p><strong>Tested:</strong> in emulators: login screen, new users, settings reset, restart and a full system update.</p>
+<h2>The numeric keypad types a period and you want a comma (or the other way round)</h2>
+<p><strong>Fix.</strong> <code>sudo DECIMAL=comma be-azerty-fix system</code> for a comma, <code>sudo DECIMAL=period be-azerty-fix system</code> for a
+period. Or choose it in the <strong>Belgian keyboard</strong> menu entry.</p>
+<p><strong>Tested:</strong> in emulators.</p>
+<h2>The live USB or the installer starts without a Belgian keyboard</h2>
+<p><strong>Cause.</strong> Mint starts with a US keyboard. Zorin asks for a language, but has no Belgian choice.</p>
+<p><strong>Fix.</strong> Our stick, or yourself in the boot menu: press <code>e</code> and add <code>keyboard-configuration/layoutcode=be</code> to the line
+that starts with <code>linux</code>. <a class="more" href="stick.html">Go to the stick ›</a></p>
+<p><strong>Tested:</strong> in emulators (UEFI and BIOS), and on one real laptop: the Zorin stick (0.9.8) and the Mint stick (0.9.9,
+reported by Younes).</p>
+<p><strong>Not fixed yet:</strong> on the first start, the installer's Wi-Fi password window once typed as a US keyboard. Not after a
+restart.</p>
+<h2>Shift+AltGr on ù, µ and = gives ǎ, ă or ȧ instead of ´, ` or ~</h2>
+<p><strong>Fix.</strong> From 0.9.9 this happens by itself on a new install. If you come from 0.9.8, type
+<code>sudo ACCENTS=windows be-azerty-fix system</code>.</p>
+<p><strong>Tested:</strong> in test containers and in the emulator on the test laptop.</p>
+<h2>´ then space gives ' instead of ´</h2>
+<p><strong>Fix.</strong> <code>be-azerty-fix accent-space on</code> (no sudo), then log out and back in.</p>
+<p><strong>Tested:</strong> in GTK programs and in the Terminal of Mint and Zorin. Not tested in Qt programs or VS Code.</p>
+<h2>The system shows an extra US layout (be,us)</h2>
+<p>This is not a bug in this project. The desktop itself adds it in Dutch and German sessions. No key switches to it, so
+you keep typing Belgian.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Built with AI help (Claude). Not affiliated with Linux Mint or Zorin OS. A small volunteer project.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">How we test</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">MIT licence</a> · <a href="../nl/problems.html" lang="nl">NL</a> <a href="../fr/problems.html" lang="fr">FR</a> <a href="../en/problems.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>

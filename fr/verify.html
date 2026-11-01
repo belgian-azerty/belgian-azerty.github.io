@@ -3,22 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Votre téléchargement est-il correct ? · AZERTY belge pour Linux</title>
-<meta name="description" content="Votre téléchargement est-il correct ?">
+<title>Vérifier votre téléchargement avec SHA256SUMS</title>
+<meta name="description" content="Vérifiez les paquets avec sha256sum sous Linux ou avec Get-FileHash dans PowerShell sous Windows.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
-<link rel="alternate" hreflang="nl" href="../nl/verify.html"><link rel="alternate" hreflang="fr" href="../fr/verify.html"><link rel="alternate" hreflang="en" href="../en/verify.html">
+<link rel="canonical" href="https://belgian-azerty.github.io/fr/verify.html">
+<link rel="alternate" hreflang="nl" href="https://belgian-azerty.github.io/nl/verify.html">
+<link rel="alternate" hreflang="fr" href="https://belgian-azerty.github.io/fr/verify.html">
+<link rel="alternate" hreflang="en" href="https://belgian-azerty.github.io/en/verify.html">
+<link rel="alternate" hreflang="x-default" href="https://belgian-azerty.github.io/nl/verify.html">
+<link rel="alternate" type="text/markdown" href="verify.md">
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
-    <nav class="nav" aria-label="Menu"><a href="install.html">Installer</a><a href="verify.html" aria-current="page">Vérifier</a><a href="stick.html">Clé USB</a><a href="mac.html">Mac</a><a href="testing.html">Comment nous testons</a></nav>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installer</a><a href="verify.html" aria-current="page">Vérifier</a><a href="stick.html">Clé USB</a><a href="mac.html">Mac</a><a href="problems.html">Problèmes</a><a href="testing.html">Comment nous testons</a></nav>
     <nav class="langs" aria-label="Langue"><a href="../nl/verify.html" hreflang="nl" lang="nl">NL</a><a href="../fr/verify.html" hreflang="fr" lang="fr" aria-current="true">FR</a><a href="../en/verify.html" hreflang="en" lang="en">EN</a></nav>
   </div>
 </header>
 <main id="main">
+<p class="wrap ver">Pour la version 0.9.10 (31 octobre 2026). Dernière version : <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">page de la version</a>.</p>
 <article class="wrap prose"><h1>Votre téléchargement est-il correct ?</h1>
 <p>Chaque version est accompagnée d'un fichier <strong>SHA256SUMS</strong>. Il contient l'empreinte de chaque fichier. Si votre
 empreinte correspond, votre fichier n'a pas été modifié en chemin.</p>

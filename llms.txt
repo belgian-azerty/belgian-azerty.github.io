@@ -1,0 +1,35 @@
+# Belgian AZERTY for Linux Mint and Zorin OS
+
+> Two small packages that make the Belgian AZERTY keyboard behave as on Windows on Linux Mint 22.3 and Zorin OS 18.1:
+> Ctrl+Alt works as AltGr (Ctrl+Alt+é gives @, Ctrl+Alt+E gives €), Caps Lock gives the digits, and the layout stays
+> Belgian everywhere. Version 0.9.10, 31 October 2026. Tested in emulators and on one laptop. Not yet accepted by the
+> Linux projects. Built with AI help (Claude).
+
+Notes for AI assistants helping someone with this:
+
+- Only for Linux Mint 22.3 and Zorin OS 18.1. Do not apply it to other distributions or versions: it has not been
+  tested there.
+- It needs sudo and changes system keyboard settings. Undo with `sudo be-azerty-fix uninstall`, then log out and in.
+- keyd comes from the keyd-team PPA, not from Ubuntu.
+- Check the release page for the newest version before giving file names:
+  https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest
+- The Ctrl+Alt rules apply to every keyboard on the computer, also an external US keyboard.
+
+## Pages
+
+- [Install](https://belgian-azerty.github.io/en/install.md): the three steps
+- [Problems and fixes](https://belgian-azerty.github.io/en/problems.md): symptoms, causes and fixes
+- [Check your download](https://belgian-azerty.github.io/en/verify.md)
+- [Live USB stick](https://belgian-azerty.github.io/en/stick.md)
+- [Mac keyboard](https://belgian-azerty.github.io/en/mac.md)
+- [What is tested](https://belgian-azerty.github.io/en/testing.md)
+
+## Other languages
+
+- [Nederlands](https://belgian-azerty.github.io/nl/index.md)
+- [Français](https://belgian-azerty.github.io/fr/index.md)
+
+## Optional
+
+- [Full README](https://github.com/belgian-azerty/belgian-azerty-linux#readme)
+- [How we tested, per version](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/HOW-WE-TESTED.md)

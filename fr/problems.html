@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problèmes et solutions : clavier belge sous Linux</title>
+<meta name="description" content="Ctrl+Alt+é ne donne pas @, Verr. Maj ne donne pas les chiffres, la clé ne démarre pas en AZERTY belge : pour chaque problème, la cause, la solution et ce qui est testé.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="canonical" href="https://belgian-azerty.github.io/fr/problems.html">
+<link rel="alternate" hreflang="nl" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" hreflang="fr" href="https://belgian-azerty.github.io/fr/problems.html">
+<link rel="alternate" hreflang="en" href="https://belgian-azerty.github.io/en/problems.html">
+<link rel="alternate" hreflang="x-default" href="https://belgian-azerty.github.io/nl/problems.html">
+<link rel="alternate" type="text/markdown" href="problems.md">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installer</a><a href="verify.html">Vérifier</a><a href="stick.html">Clé USB</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problèmes</a><a href="testing.html">Comment nous testons</a></nav>
+    <nav class="langs" aria-label="Langue"><a href="../nl/problems.html" hreflang="nl" lang="nl">NL</a><a href="../fr/problems.html" hreflang="fr" lang="fr" aria-current="true">FR</a><a href="../en/problems.html" hreflang="en" lang="en">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<p class="wrap ver">Pour la version 0.9.10 (31 octobre 2026). Dernière version : <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">page de la version</a>.</p>
+<article class="wrap prose"><h1>Problèmes et solutions</h1>
+<p>Voici les problèmes que nous avons vus et testés nous-mêmes, dans les mots que vous taperiez vous-même. Cela vaut pour
+Linux Mint 22.3 et Zorin OS 18.1. Rien n'est testé sur d'autres systèmes.</p>
+<h2>Ctrl+Alt+é ne donne pas @, et Ctrl+Alt+E ne donne pas €</h2>
+<p><strong>Cause.</strong> Sous Linux, seule la touche AltGr donne ces caractères. Ctrl+Alt ne le fait pas, alors que sous Windows oui.</p>
+<p><strong>Solution.</strong> Installez keyd et notre paquet keyd-belgian-windows. <a class="more" href="install.html">Vers l&#x27;installation ›</a></p>
+<p><strong>Testé :</strong> dans des émulateurs pour Mint et Zorin, et avec la clé Zorin sur un vrai ordinateur portable (version 0.9.8).</p>
+<h2>AltGr+4 et AltGr+5 donnent ¼ et ½ au lieu de { et [</h2>
+<p><strong>Cause.</strong> La disposition belge de Linux a d'autres caractères à ces endroits que Windows.</p>
+<p><strong>Solution.</strong> Le même paquet keyd-belgian-windows. <a class="more" href="install.html">Vers l&#x27;installation ›</a></p>
+<p><strong>Testé :</strong> dans l'émulateur sur l'ordinateur de test (0.9.8 et 0.9.9).</p>
+<h2>Avec Verr. Maj activé, la rangée du haut ne donne pas les chiffres</h2>
+<p>Sous Windows, la rangée du haut donne les chiffres 1 2 3 quand Verr. Maj est activé. Sous Linux, non.</p>
+<p><strong>Solution.</strong> Notre paquet belgian-azerty-windows, puis <code>sudo be-azerty-fix system</code>. Sur Mint, le Verr. Maj de
+Windows est alors activé. Sur Zorin, vous l'activez vous-même avec <code>sudo CAPS=windows be-azerty-fix system</code>.</p>
+<p><strong>Attention, sur Zorin :</strong> à cause d'un défaut de GNOME, six touches peuvent s'arrêter après Verr. Maj dans un champ de
+mot de passe. Déconnectez-vous puis reconnectez-vous. <a class="more" href="https://github.com/belgian-azerty/belgian-azerty-linux#caps-lock-on-zorin">Explication dans le README ›</a></p>
+<p><strong>Testé :</strong> dans des émulateurs.</p>
+<h2>L'écran de connexion, un nouvel utilisateur ou une réinitialisation n'a pas le clavier belge</h2>
+<p><strong>Cause.</strong> Linux enregistre la disposition à plusieurs endroits. Le belge n'est pas en premier partout.</p>
+<p><strong>Solution.</strong> <code>sudo be-azerty-fix system</code> met le belge en premier à tous ces endroits. Vos autres dispositions restent.</p>
+<p><strong>Testé :</strong> dans des émulateurs : écran de connexion, nouveaux utilisateurs, réinitialisation des réglages,
+redémarrage et mise à jour complète du système.</p>
+<h2>Le pavé numérique tape un point et vous voulez une virgule (ou l'inverse)</h2>
+<p><strong>Solution.</strong> <code>sudo DECIMAL=comma be-azerty-fix system</code> pour une virgule, <code>sudo DECIMAL=period be-azerty-fix system</code>
+pour un point. Ou choisissez-le dans l'entrée de menu <strong>Clavier belge</strong>.</p>
+<p><strong>Testé :</strong> dans des émulateurs.</p>
+<h2>La clé USB live ou l'installateur démarre sans clavier belge</h2>
+<p><strong>Cause.</strong> Mint démarre avec un clavier américain. Zorin demande une langue, mais n'a pas de choix belge.</p>
+<p><strong>Solution.</strong> Notre clé, ou vous-même dans le menu de démarrage : appuyez sur <code>e</code> et ajoutez
+<code>keyboard-configuration/layoutcode=be</code> à la ligne qui commence par <code>linux</code>. <a class="more" href="stick.html">Vers la clé USB ›</a></p>
+<p><strong>Testé :</strong> dans des émulateurs (UEFI et BIOS), et sur un vrai ordinateur portable : la clé Zorin (0.9.8) et la clé
+Mint (0.9.9, signalé par Younes).</p>
+<p><strong>Pas encore résolu :</strong> au premier démarrage, la fenêtre du mot de passe Wi-Fi de l'installateur a tapé une fois comme
+un clavier américain. Plus après un redémarrage.</p>
+<h2>Maj+AltGr sur ù, µ et = donne ǎ, ă ou ȧ au lieu de ´, ` ou ~</h2>
+<p><strong>Solution.</strong> Depuis la 0.9.9, c'est automatique pour une nouvelle installation. Si vous venez de la 0.9.8, tapez
+<code>sudo ACCENTS=windows be-azerty-fix system</code>.</p>
+<p><strong>Testé :</strong> dans des conteneurs de test et dans l'émulateur sur l'ordinateur de test.</p>
+<h2>´ puis espace donne ' au lieu de ´</h2>
+<p><strong>Solution.</strong> <code>be-azerty-fix accent-space on</code> (sans sudo), puis déconnectez-vous et reconnectez-vous.</p>
+<p><strong>Testé :</strong> dans les programmes GTK et dans le Terminal de Mint et de Zorin. Pas testé dans les programmes Qt ni dans
+VS Code.</p>
+<h2>Le système affiche une disposition américaine en plus (be,us)</h2>
+<p>Ce n'est pas un défaut de ce projet. Le bureau lui-même l'ajoute dans les sessions en néerlandais et en allemand.
+Aucune touche ne bascule vers elle, vous continuez donc à taper en belge.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Réalisé avec l&#x27;aide de l&#x27;IA (Claude). Sans lien avec Linux Mint ni Zorin OS. Un petit projet bénévole.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">Comment nous testons</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">Licence MIT</a> · <a href="../nl/problems.html" lang="nl">NL</a> <a href="../fr/problems.html" lang="fr">FR</a> <a href="../en/problems.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>
