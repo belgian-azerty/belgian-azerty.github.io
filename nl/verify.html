@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klopt je download? · Belgische AZERTY voor Linux</title>
+<meta name="description" content="Klopt je download?">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" hreflang="nl" href="../nl/verify.html"><link rel="alternate" hreflang="fr" href="../fr/verify.html"><link rel="alternate" hreflang="en" href="../en/verify.html">
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installeren</a><a href="verify.html" aria-current="page">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="testing.html">Hoe we testen</a></nav>
+    <nav class="langs" aria-label="Taal"><a href="../nl/verify.html" hreflang="nl" lang="nl" aria-current="true">NL</a><a href="../fr/verify.html" hreflang="fr" lang="fr">FR</a><a href="../en/verify.html" hreflang="en" lang="en">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<article class="wrap prose"><h1>Klopt je download?</h1>
+<p>Bij elke versie hoort een bestand <strong>SHA256SUMS</strong>. Daarin staat de vingerafdruk van elk bestand. Komt jouw vingerafdruk
+overeen, dan is je bestand onderweg niet veranderd.</p>
+<p><strong>Op Linux</strong>, in de map met de bestanden:</p>
+<pre><code>sha256sum -c SHA256SUMS --ignore-missing
+</code></pre>
+<p>Elk bestand moet <strong>OK</strong> geven.</p>
+<p><strong>Op Windows</strong> (PowerShell), per bestand:</p>
+<pre><code>Get-FileHash .\belgian-azerty-windows_0.9.10_all.deb -Algorithm SHA256
+</code></pre>
+<p>Vergelijk de lange code met de regel voor dat bestand in SHA256SUMS.</p>
+<p><strong>Komt het niet overeen?</strong> Gebruik het bestand dan niet. Download het opnieuw van de <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">releasepagina</a>.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Gemaakt met AI-hulp (Claude). Niet verbonden aan Linux Mint of Zorin OS. Een klein vrijwilligersproject.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">Hoe we testen</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">MIT-licentie</a> · <a href="../nl/verify.html" lang="nl">NL</a> <a href="../fr/verify.html" lang="fr">FR</a> <a href="../en/verify.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Votre téléchargement est-il correct ? · AZERTY belge pour Linux</title>
+<meta name="description" content="Votre téléchargement est-il correct ?">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" hreflang="nl" href="../nl/verify.html"><link rel="alternate" hreflang="fr" href="../fr/verify.html"><link rel="alternate" hreflang="en" href="../en/verify.html">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installer</a><a href="verify.html" aria-current="page">Vérifier</a><a href="stick.html">Clé USB</a><a href="mac.html">Mac</a><a href="testing.html">Comment nous testons</a></nav>
+    <nav class="langs" aria-label="Langue"><a href="../nl/verify.html" hreflang="nl" lang="nl">NL</a><a href="../fr/verify.html" hreflang="fr" lang="fr" aria-current="true">FR</a><a href="../en/verify.html" hreflang="en" lang="en">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<article class="wrap prose"><h1>Votre téléchargement est-il correct ?</h1>
+<p>Chaque version est accompagnée d'un fichier <strong>SHA256SUMS</strong>. Il contient l'empreinte de chaque fichier. Si votre
+empreinte correspond, votre fichier n'a pas été modifié en chemin.</p>
+<p><strong>Sous Linux</strong>, dans le dossier qui contient les fichiers :</p>
+<pre><code>sha256sum -c SHA256SUMS --ignore-missing
+</code></pre>
+<p>Chaque fichier doit afficher <strong>OK</strong>.</p>
+<p><strong>Sous Windows</strong> (PowerShell), fichier par fichier :</p>
+<pre><code>Get-FileHash .\belgian-azerty-windows_0.9.10_all.deb -Algorithm SHA256
+</code></pre>
+<p>Comparez le long code avec la ligne de ce fichier dans SHA256SUMS.</p>
+<p><strong>Ça ne correspond pas ?</strong> N'utilisez pas le fichier. Téléchargez-le à nouveau depuis la <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">page de la version</a>.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Réalisé avec l&#x27;aide de l&#x27;IA (Claude). Sans lien avec Linux Mint ni Zorin OS. Un petit projet bénévole.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">Comment nous testons</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">Licence MIT</a> · <a href="../nl/verify.html" lang="nl">NL</a> <a href="../fr/verify.html" lang="fr">FR</a> <a href="../en/verify.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>

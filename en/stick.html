@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try it on a USB stick first · Belgian AZERTY for Linux</title>
+<meta name="description" content="Try it on a USB stick first">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" hreflang="nl" href="../nl/stick.html"><link rel="alternate" hreflang="fr" href="../fr/stick.html"><link rel="alternate" hreflang="en" href="../en/stick.html">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Install</a><a href="verify.html">Check download</a><a href="stick.html" aria-current="page">Stick</a><a href="mac.html">Mac</a><a href="testing.html">How we test</a></nav>
+    <nav class="langs" aria-label="Language"><a href="../nl/stick.html" hreflang="nl" lang="nl">NL</a><a href="../fr/stick.html" hreflang="fr" lang="fr">FR</a><a href="../en/stick.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<article class="wrap prose"><h1>Try it on a USB stick first</h1>
+<p>A normal Mint stick starts with a US keyboard. A normal Zorin stick asks for a language first, but has no Belgian
+choice: Nederlands gives you a US keyboard, Français a French one. It stays that way until you have installed Linux.
+On our stick, the boot menu first asks for your language (Nederlands, Français, Deutsch, English) and then your
+keyboard: Belgian AZERTY with a period or a comma on the numeric keypad. Our packages are already on it. If you install
+from the stick, they come along.</p>
+<p><strong>This is a stopgap.</strong> It is needed until Mint and Zorin have a Belgian choice in their own boot menu. It is not our
+own version of Mint or Zorin, and we are not affiliated with those projects.</p>
+<p><strong>How do you make it?</strong> You download the official ISO yourself, from linuxmint.com or zorin.com. Our tool changes only
+the boot menu, the list of checksums, one extra file with our packages, and the <code>/belgian/</code> folder. Everything else is
+the original system.</p>
+<ul>
+<li><strong>On Linux (or with WSL on Windows):</strong> follow the <a href="https://github.com/belgian-azerty/belgian-azerty-linux#live-usb">recipe in the README, under "Live USB"</a>.</li>
+<li><strong>With Windows and Rufus only:</strong> in preparation. The first test in the emulator passed. A test with a real stick is
+  still to be done.</li>
+</ul>
+<p><strong>Rather not use a stick?</strong> That works too. Install Mint or Zorin as usual, then follow the install page. You only miss
+the Belgian keyboard during the first few minutes.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Built with AI help (Claude). Not affiliated with Linux Mint or Zorin OS. A small volunteer project.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">How we test</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">MIT licence</a> · <a href="../nl/stick.html" lang="nl">NL</a> <a href="../fr/stick.html" lang="fr">FR</a> <a href="../en/stick.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>
