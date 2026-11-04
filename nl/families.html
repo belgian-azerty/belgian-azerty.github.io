@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belgisch AZERTY op Fedora, openSUSE, Arch en andere Linux</title>
+<meta name="description" content="Hoe ver het Belgische toetsenbord van Windows staat op vijf Linux-families: Ubuntu en Debian, Fedora, openSUSE, Arch en onafhankelijke systemen. Per systeem een eerlijke stand.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="canonical" href="https://belgian-azerty.github.io/nl/families.html">
+<link rel="alternate" hreflang="nl" href="https://belgian-azerty.github.io/nl/families.html">
+<link rel="alternate" hreflang="fr" href="https://belgian-azerty.github.io/fr/families.html">
+<link rel="alternate" hreflang="en" href="https://belgian-azerty.github.io/en/families.html">
+<link rel="alternate" hreflang="x-default" href="https://belgian-azerty.github.io/nl/families.html">
+<link rel="alternate" type="text/markdown" href="families.md">
+</head>
+<body>
+<a class="skip" href="#main">Naar de inhoud</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installeren</a><a href="families.html" aria-current="page">Andere Linux</a><a href="verify.html">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html">Problemen</a><a href="testing.html">Hoe we testen</a></nav>
+    <nav class="langs" aria-label="Taal"><a href="../nl/families.html" hreflang="nl" lang="nl" aria-current="true">NL</a><a href="../fr/families.html" hreflang="fr" lang="fr">FR</a><a href="../en/families.html" hreflang="en" lang="en">EN</a></nav>
+  </div>
+</header>
+<main id="main">
+<p class="wrap ver">Voor versie 0.9.12 (3 november 2026). Nieuwste versie: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">releasepagina</a>.</p>
+<article class="wrap prose"><h1>Belgisch AZERTY op vijf Linux-families</h1>
+<p>Dit project begon bij Linux Mint en Zorin OS. Nu zijn er ook bestanden voor de andere grote families van Linux. Het
+staat niet overal even ver. Hieronder zie je per systeem hoe ver.</p>
+<h3>Wat betekent de stand?</h3>
+<ul>
+<li><strong>Uitgebracht:</strong> er is een versie om te downloaden. Getest in emulators en op één echte laptop.</li>
+<li><strong>Getest in testcontainers:</strong> getest in een afgesloten testsysteem zonder bureaublad. Er is nog niets om te
+  downloaden: je bouwt het pakket zelf, met de stappen hieronder. Een test op een echt bureaublad volgt.</li>
+<li><strong>Script:</strong> geen pakket, maar een klein script. Getest in testcontainers. Werkt alleen op bureaubladen met Wayland.</li>
+</ul>
+<h3>Overal hetzelfde</h3>
+<p>Dezelfde drie keuzes als op Mint en Zorin: Caps Lock zoals op Windows, de accenten met Shift+AltGr zoals op Windows,
+en de indeling voor een Belgisch Apple-toetsenbord. Ctrl+Alt als AltGr komt van keyd, met onze regels.</p>
+<h3>Anders dan op Mint en Zorin</h3>
+<ul>
+<li>Geen enkel bestand van het systeem verandert. Onze twee bestanden komen in de map <code>/etc/xkb</code>.</li>
+<li>De keuzes staan niet in de toetsenbordinstellingen van je bureaublad. Je zet ze aan met één commando (hieronder).</li>
+<li>Een X11-sessie en de tekstconsole lezen <code>/etc/xkb</code> niet. Daar verandert er niets.</li>
+</ul>
+<h2>Ubuntu en Debian</h2>
+<p><strong>Linux Mint 22.3 en Zorin OS 18.1: uitgebracht (0.9.12).</strong> <a class="more" href="install.html">Naar installeren ›</a></p>
+<p><strong>Ubuntu 24.04 en Debian 13: zelfde pakket, getest in testcontainers.</strong> Ook het typen is getest, op een
+GNOME-bureaublad zonder scherm: hetzelfde resultaat als op Mint en Zorin. Je volgt dezelfde stappen als op Mint. Op
+Debian zit keyd al in het systeem: typ <code>sudo apt install keyd</code> in plaats van de PPA.</p>
+<p><strong>Later naar Ubuntu 26.04, Linux Mint 23 of Debian 14?</strong> Installeer eerst 0.9.12. Met 0.9.11 of ouder stopt de
+upgrade halverwege. Getest met een volledige pakketupgrade in testcontainers, niet met de upgradeprogramma's van Ubuntu of
+Mint zelf. <a class="more" href="problems.html">Wat als de upgrade al vastzit: Problemen ›</a></p>
+<h2>Fedora</h2>
+<p><strong>Fedora 44 en 45: getest in testcontainers. De bureaubladtest vond een probleem met SELinux. Oplossing volgt.</strong></p>
+<p><strong>Installeer het nu nog niet op Fedora.</strong> Op een Fedora-bureaublad in een emulator typte het toetsenbord zoals op
+Mint, ook met keyd en de accenten. Maar SELinux, dat op Fedora standaard aan staat, laat de toetsenborddienst van het
+systeem ons bestand in <code>/etc/xkb</code> niet lezen. Daardoor weigert het systeem elke nieuwe indeling, ook gewoon Belgisch,
+en blijft het aanmeldscherm Amerikaans. In de testcontainers stond SELinux uit, daarom zagen we het daar niet.</p>
+<p>Zodra er een oplossing is en die getest is, komen de stappen hier. Wie wil meetesten, vindt de bouwstappen nu al in
+<a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
+<h2>openSUSE</h2>
+<p><strong>Tumbleweed en Leap 16.0: getest in testcontainers, bureaubladtest volgt.</strong></p>
+<p><strong>Let op:</strong> nieuwe installaties van openSUSE gebruiken ook SELinux. Of hetzelfde probleem als op Fedora daar
+optreedt, is nog niet getest. In de testcontainers stond SELinux uit. Probeer het daarom eerst in een virtuele machine.</p>
+<p>openSUSE heeft keyd zelf. Typ als gewone gebruiker:</p>
+<pre><code>sudo zypper install rpm-build systemd-rpm-macros git curl
+git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
+SRC=$(rpm --eval %_sourcedir); mkdir -p &quot;$SRC&quot;
+curl -L -o &quot;$SRC&quot;/belgian-azerty-linux-0.9.12.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.12.tar.gz
+for s in packaging/opensuse/*.spec; do rpmbuild -ba &quot;$s&quot;; done
+sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.12-*.rpm
+</code></pre>
+<p>Zet daarna de keuzes aan (zie "Keuzes aanzetten" hieronder).</p>
+<h2>Arch</h2>
+<p><strong>Arch Linux: getest in testcontainers, bureaubladtest volgt.</strong></p>
+<p>Arch heeft keyd zelf. Typ als gewone gebruiker:</p>
+<pre><code>sudo pacman -S --needed base-devel git
+git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux/packaging/arch
+(cd belgian-azerty-windows &amp;&amp; makepkg -si)
+(cd keyd-belgian-windows &amp;&amp; makepkg -si)
+</code></pre>
+<p>Goed om te weten: ons keyd-pakket zet keyd meteen aan, want daarvoor installeer je het. Op Arch is dat ongewoon.</p>
+<p>Zet daarna de keuzes aan (zie hieronder).</p>
+<h2>Onafhankelijke systemen: Void, NixOS, Gentoo, Slackware, Solus</h2>
+<p><strong>Script: getest in testcontainers, X11 nog open.</strong></p>
+<p>Hier is er geen pakket, maar een klein script. Het zet dezelfde twee bestanden in <code>/etc/xkb</code> en verandert niets aan
+het systeem:</p>
+<pre><code>git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
+sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh install
+sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
+</code></pre>
+<p>Weer weg: <code>sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove</code>. Dat haalt alleen onze twee bestanden weg.</p>
+<p><strong>Goed om te weten</strong></p>
+<ul>
+<li>Getest met de toetsenbordbibliotheek en de toetsenborddata van elk systeem. Voor Slackware en Solus bestaat geen
+  testcontainer: hun eigen pakketten zijn op een ander testsysteem gezet. Op Slackware 15.0 kon één controle niet
+  draaien, omdat het testprogramma een nieuwere versie nodig heeft.</li>
+<li>Alleen voor bureaubladen met Wayland. Een X11-sessie leest <code>/etc/xkb</code> niet, en veel van deze systemen draaien nog
+  X11 (Slackware 15.0 standaard). Een oplossing voor X11 is er nog niet.</li>
+<li>Het script zet keyd niet op. keyd zit in Void, NixOS en Solus; op Gentoo in de GURU-overlay, op Slackware op
+  SlackBuilds.org. De regels voor keyd staan in <code>keyd/be-winaltgr.conf</code>. Dat is hier niet getest.</li>
+<li>Op NixOS beheert je configuratie de map <code>/etc</code>. Of een rebuild onze bestanden laat staan, is niet nagekeken.</li>
+</ul>
+<h2>Keuzes aanzetten (openSUSE, Arch en de onafhankelijke systemen)</h2>
+<p>Voor het hele systeem, ook het aanmeldscherm en nieuwe gebruikers, als je systeem systemd heeft:</p>
+<pre><code>sudo localectl set-x11-keymap be pc105 &quot;&quot; caps:be_windows,be_azerty:accents
+</code></pre>
+<p>Getest in testcontainers. Zonder systemd zet je de keuzes in de toetsenbordinstelling van je bureaublad.</p>
+<h2>Nog niet getest buiten Mint en Zorin</h2>
+<ul>
+<li>Een echt bureaublad (GNOME, KDE) en het aanmeldscherm. GNOME op Wayland zou moeten werken, maar is niet getest.
+  Voor KDE Plasma weten we het niet.</li>
+<li>keyd in werking, dus Ctrl+Alt als AltGr tijdens het typen.</li>
+<li>De tekstconsole en het ontgrendelscherm van de schijf.</li>
+<li>Een echte installatie of een echte pc.</li>
+</ul>
+<p>Alle details: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a> en <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/HOW-WE-TESTED.md">HOW-WE-TESTED.md</a>.</p>
+<p><strong>Werkt het bij jou, of net niet?</strong> Laat het weten op <a href="https://github.com/belgian-azerty/belgian-azerty-linux/discussions">GitHub Discussions</a>. Elke test op een echte computer helpt.</p>
+</article>
+</main>
+<footer class="foot"><div class="wrap"><p>Gemaakt met AI-hulp (Claude). Niet verbonden aan Linux Mint of Zorin OS. Een klein vrijwilligersproject.</p><p class="fl"><a href="https://github.com/belgian-azerty/belgian-azerty-linux">GitHub</a> · <a href="testing.html">Hoe we testen</a> · <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/LICENSE">MIT-licentie</a> · <a href="../nl/families.html" lang="nl">NL</a> <a href="../fr/families.html" lang="fr">FR</a> <a href="../en/families.html" lang="en">EN</a></p></div></footer>
+</body>
+</html>

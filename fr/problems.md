@@ -3,7 +3,7 @@
 # Problèmes et solutions
 
 Voici les problèmes que nous avons vus et testés nous-mêmes, dans les mots que vous taperiez vous-même. Cela vaut pour
-Linux Mint 22.3 et Zorin OS 18.1. Rien n'est testé sur d'autres systèmes.
+Linux Mint 22.3 et Zorin OS 18.1. Pour d'autres systèmes : [Cinq familles Linux](https://belgian-azerty.github.io/fr/families.md)
 
 ## Ctrl+Alt+é ne donne pas @, et Ctrl+Alt+E ne donne pas €
 
@@ -48,6 +48,24 @@ redémarrage et mise à jour complète du système.
 pour un point. Ou choisissez-le dans l'entrée de menu **Clavier belge**.
 
 **Testé :** dans des émulateurs.
+
+## La mise à niveau vers Ubuntu 26.04, Linux Mint 23 ou Debian 14 s'arrête à mi-chemin
+
+**Cause.** Cette mise à niveau transforme le dossier du clavier en lien. Avec la 0.9.11 ou plus ancienne, deux
+fichiers de notre paquet s'y trouvent encore, et la mise à niveau refuse.
+
+**Avant.** Installez d'abord la 0.9.12. Elle met ses fichiers de côté un instant, puis les remet en place.
+
+**Déjà bloqué ?** Tapez :
+```
+sudo dpkg -r belgian-azerty-windows
+sudo apt -f install
+sudo apt full-upgrade
+```
+Installez ensuite la 0.9.12 et tapez `sudo be-azerty-fix system`.
+
+**Testé :** en conteneurs de test (Ubuntu 24.04 vers 26.04, Debian 13 vers la prochaine Debian). Pas avec les
+outils de mise à niveau d'Ubuntu ou de Mint eux-mêmes.
 
 ## La clé USB live ou l'installateur démarre sans clavier belge
 

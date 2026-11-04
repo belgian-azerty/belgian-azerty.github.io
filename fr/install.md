@@ -2,7 +2,7 @@
 
 # Installer sur un système qui fonctionne déjà
 
-Pour Linux Mint 22.3 et Zorin OS 18.1. Vous tapez trois fois quelque chose dans un terminal.
+Pour Linux Mint 22.3 et Zorin OS 18.1. Vous tapez trois fois quelque chose dans un terminal. Un autre système ? [Cinq familles Linux](https://belgian-azerty.github.io/fr/families.md)
 
 ## Étape 1. Ajoutez keyd.
 
@@ -18,11 +18,11 @@ sudo apt install keyd
 
 ## Étape 2. Installez nos deux paquets.
 
-Téléchargez-les depuis la [page de la version 0.9.10](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.10) dans un dossier vide.
+Téléchargez-les depuis la [page de la version 0.9.12](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) dans un dossier vide.
 Ouvrez un terminal dans ce dossier et tapez :
 
 ```
-sudo apt install ./keyd-belgian-windows_0.9.10_all.deb ./belgian-azerty-windows_0.9.10_all.deb
+sudo apt install ./keyd-belgian-windows_0.9.12_all.deb ./belgian-azerty-windows_0.9.12_all.deb
 sudo be-azerty-fix system
 ```
 
@@ -39,6 +39,8 @@ Windows et le profil Linux, avec un point ou une virgule.
 - Les règles Ctrl+Alt valent pour tout clavier que vous branchez, aussi pour un clavier américain externe.
 - Sur Zorin, Verr. Maj reste par défaut comme sous Linux. C'est dû à un défaut de GNOME dans les fenêtres de mot de
   passe. Vous pouvez activer vous-même le Verr. Maj de Windows. [Explication dans le README](https://github.com/belgian-azerty/belgian-azerty-linux#caps-lock-on-zorin)
+- Vous passerez plus tard à Linux Mint 23 ou Ubuntu 26.04 ? Installez d'abord la 0.9.12. Avec la 0.9.11 ou plus
+  ancienne, la mise à niveau s'arrête à mi-chemin.
 - Tous les problèmes connus sont dans le [README, sous « Known issues »](https://github.com/belgian-azerty/belgian-azerty-linux#known-issues).
 
 - [Vérifiez d'abord votre téléchargement](https://belgian-azerty.github.io/fr/verify.md)

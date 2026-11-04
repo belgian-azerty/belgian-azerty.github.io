@@ -12,12 +12,13 @@ are used to from Windows. We add it with two small packages and the keyd program
 - **You choose what the numeric keypad key types:** a period or a comma.
 - **The layout stays Belgian.** Also for new users and after a settings reset. Your other layouts stay in place.
 
-- [Install (0.9.10)](https://belgian-azerty.github.io/en/install.md)
+- [Install (0.9.12)](https://belgian-azerty.github.io/en/install.md)
 - [Try it on a USB stick first](https://belgian-azerty.github.io/en/stick.md)
 
 **Tested** in emulators and on one laptop, for Linux Mint 22.3 and Zorin OS 18.1.
 **Status:** a long-standing problem that no project owns. Not yet accepted by the Linux projects.
-**Version:** 0.9.10, 31 October 2026.
+**Other Linux:** files for Ubuntu, Debian, Fedora, openSUSE, Arch and five independent systems, tested in test containers.
+**Version:** 0.9.12, 3 November 2026.
 
 ### Choose your route
 
@@ -26,6 +27,8 @@ are used to from Windows. We add it with two small packages and the keyd program
 **2. Try it first.** You make a USB stick from the official Mint or Zorin ISO, with the Belgian keyboard from the first screen. It is a temporary stopgap, not an operating system of our own. [Go to the stick](https://belgian-azerty.github.io/en/stick.md)
 
 **3. Mac keyboard.** The Apple layout is an option. The text console and the disk unlock screen keep the PC layout. [Go to Mac](https://belgian-azerty.github.io/en/mac.md)
+
+**4. Another Linux system.** Fedora, openSUSE, Arch, Void, NixOS, Gentoo, Slackware or Solus. For each system you see how far it is. [Go to five Linux families](https://belgian-azerty.github.io/en/families.md)
 
 ### What we don't do
 
@@ -39,7 +42,7 @@ Belgian first, PC and Mac, all the way. Other countries follow later, one countr
 
 ### The goal
 
-We want Linux Mint, Zorin OS and the projects they build on to adopt this fix themselves. Until then, this is an
+We want the Linux projects to adopt this fix themselves. Until then, this is an
 unofficial community project.
 
 ---

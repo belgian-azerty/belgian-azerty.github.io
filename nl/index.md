@@ -12,12 +12,13 @@ gewend bent. Wij voegen dat toe met twee kleine pakketten en het programma keyd:
 - **Je kiest wat de toets op het numeriek klavier typt:** een punt of een komma.
 - **De indeling blijft Belgisch.** Ook voor nieuwe gebruikers en na een reset van de instellingen. Je andere indelingen blijven staan.
 
-- [Installeren (0.9.10)](https://belgian-azerty.github.io/nl/install.md)
+- [Installeren (0.9.12)](https://belgian-azerty.github.io/nl/install.md)
 - [Eerst proberen op een stick](https://belgian-azerty.github.io/nl/stick.md)
 
 **Getest** in emulators en op één laptop, voor Linux Mint 22.3 en Zorin OS 18.1.
 **Stand:** een oud probleem waar geen enkel project eigenaar van is. Nog niet aanvaard door de Linux-projecten.
-**Versie:** 0.9.10, 31 oktober 2026.
+**Andere Linux:** bestanden voor Ubuntu, Debian, Fedora, openSUSE, Arch en vijf onafhankelijke systemen, getest in testcontainers.
+**Versie:** 0.9.12, 3 november 2026.
 
 ### Kies je weg
 
@@ -26,6 +27,8 @@ gewend bent. Wij voegen dat toe met twee kleine pakketten en het programma keyd:
 **2. Eerst proberen.** Je maakt een stick van de officiële ISO van Mint of Zorin, met het Belgische toetsenbord vanaf het eerste scherm. Dat is een tijdelijke noodoplossing, geen eigen besturingssysteem. [Naar de stick](https://belgian-azerty.github.io/nl/stick.md)
 
 **3. Mac-toetsenbord.** De Apple-indeling is een optie. Het tekstscherm en het ontgrendelscherm van de schijf houden de pc-indeling. [Naar Mac](https://belgian-azerty.github.io/nl/mac.md)
+
+**4. Een ander Linux-systeem.** Fedora, openSUSE, Arch, Void, NixOS, Gentoo, Slackware of Solus. Per systeem zie je hoe ver het staat. [Naar vijf Linux-families](https://belgian-azerty.github.io/nl/families.md)
 
 ### Wat we niet doen
 
@@ -39,7 +42,7 @@ Eerst Belgisch, pc en Mac, helemaal. Andere landen volgen later, één land tege
 
 ### Het doel
 
-Wij willen dat Linux Mint, Zorin OS en de projecten waarop ze bouwen deze oplossing zelf overnemen. Tot dan is dit
+Wij willen dat de Linux-projecten deze oplossing zelf overnemen. Tot dan is dit
 een onofficieel gemeenschapsproject.
 
 ---

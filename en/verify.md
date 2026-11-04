@@ -16,7 +16,7 @@ Every file must show **OK**.
 **On Windows** (PowerShell), one file at a time:
 
 ```
-Get-FileHash .\belgian-azerty-windows_0.9.10_all.deb -Algorithm SHA256
+Get-FileHash .\belgian-azerty-windows_0.9.12_all.deb -Algorithm SHA256
 ```
 
 Compare the long code with the line for that file in SHA256SUMS.

@@ -19,15 +19,15 @@
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
-    <nav class="nav" aria-label="Menu"><a href="install.html">Install</a><a href="verify.html">Check download</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problems</a><a href="testing.html">How we test</a></nav>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Install</a><a href="families.html">Other Linux</a><a href="verify.html">Check download</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problems</a><a href="testing.html">How we test</a></nav>
     <nav class="langs" aria-label="Language"><a href="../nl/problems.html" hreflang="nl" lang="nl">NL</a><a href="../fr/problems.html" hreflang="fr" lang="fr">FR</a><a href="../en/problems.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
   </div>
 </header>
 <main id="main">
-<p class="wrap ver">For version 0.9.10 (31 October 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
+<p class="wrap ver">For version 0.9.12 (3 November 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
 <article class="wrap prose"><h1>Problems and fixes</h1>
 <p>These are the problems we have seen and tested ourselves, in the words you would type yourself. This applies to
-Linux Mint 22.3 and Zorin OS 18.1. Nothing has been tested on other systems.</p>
+Linux Mint 22.3 and Zorin OS 18.1. For other systems: <a class="more" href="families.html">Five Linux families ›</a></p>
 <h2>Ctrl+Alt+é does not give @, and Ctrl+Alt+E does not give €</h2>
 <p><strong>Cause.</strong> On Linux, only the AltGr key gives these characters. Ctrl+Alt does not, while on Windows it does.</p>
 <p><strong>Fix.</strong> Install keyd and our keyd-belgian-windows package. <a class="more" href="install.html">Go to install ›</a></p>
@@ -51,6 +51,18 @@ out and back in. <a class="more" href="https://github.com/belgian-azerty/belgian
 <p><strong>Fix.</strong> <code>sudo DECIMAL=comma be-azerty-fix system</code> for a comma, <code>sudo DECIMAL=period be-azerty-fix system</code> for a
 period. Or choose it in the <strong>Belgian keyboard</strong> menu entry.</p>
 <p><strong>Tested:</strong> in emulators.</p>
+<h2>The upgrade to Ubuntu 26.04, Linux Mint 23 or Debian 14 stops half-way</h2>
+<p><strong>Cause.</strong> That upgrade turns the keyboard folder into a link. With 0.9.11 or older, two files of our package are
+still in it, and then the upgrade refuses.</p>
+<p><strong>Before.</strong> Install 0.9.12 first. It moves its files aside for a moment and puts them back afterwards.</p>
+<p><strong>Already stuck?</strong> Type:</p>
+<pre><code>sudo dpkg -r belgian-azerty-windows
+sudo apt -f install
+sudo apt full-upgrade
+</code></pre>
+<p>Then install 0.9.12 and type <code>sudo be-azerty-fix system</code>.</p>
+<p><strong>Tested:</strong> in test containers (Ubuntu 24.04 to 26.04, Debian 13 to the next Debian). Not with Ubuntu's or Mint's
+own upgrade tools.</p>
 <h2>The live USB or the installer starts without a Belgian keyboard</h2>
 <p><strong>Cause.</strong> Mint starts with a US keyboard. Zorin asks for a language, but has no Belgian choice.</p>
 <p><strong>Fix.</strong> Our stick, or yourself in the boot menu: press <code>e</code> and add <code>keyboard-configuration/layoutcode=be</code> to the line

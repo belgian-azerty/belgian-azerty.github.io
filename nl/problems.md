@@ -3,7 +3,7 @@
 # Problemen en oplossingen
 
 Hier staan de problemen die we zelf gezien en getest hebben, in de woorden die je zelf zou typen. Dit geldt voor
-Linux Mint 22.3 en Zorin OS 18.1. Op andere systemen is niets getest.
+Linux Mint 22.3 en Zorin OS 18.1. Voor andere systemen: [Vijf Linux-families](https://belgian-azerty.github.io/nl/families.md)
 
 ## Ctrl+Alt+é geeft geen @, en Ctrl+Alt+E geeft geen €
 
@@ -48,6 +48,24 @@ systeemupdate.
 voor een punt. Of kies het in het menu-item **Belgisch toetsenbord**.
 
 **Getest:** in emulators.
+
+## De upgrade naar Ubuntu 26.04, Linux Mint 23 of Debian 14 stopt halverwege
+
+**Oorzaak.** Die upgrade maakt van de toetsenbordmap een link. Met 0.9.11 of ouder staan daar nog twee bestanden
+van ons pakket, en dan weigert de upgrade.
+
+**Vooraf.** Installeer eerst 0.9.12. Die zet zijn bestanden even opzij en daarna terug.
+
+**Zit de upgrade al vast?** Typ:
+```
+sudo dpkg -r belgian-azerty-windows
+sudo apt -f install
+sudo apt full-upgrade
+```
+Installeer daarna 0.9.12 en typ `sudo be-azerty-fix system`.
+
+**Getest:** in testcontainers (Ubuntu 24.04 naar 26.04, Debian 13 naar de volgende Debian). Niet met de
+upgradeprogramma's van Ubuntu of Mint zelf.
 
 ## De live-USB of het installatieprogramma start zonder Belgisch toetsenbord
 

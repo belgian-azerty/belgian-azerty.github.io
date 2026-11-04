@@ -3,7 +3,7 @@
 # Problems and fixes
 
 These are the problems we have seen and tested ourselves, in the words you would type yourself. This applies to
-Linux Mint 22.3 and Zorin OS 18.1. Nothing has been tested on other systems.
+Linux Mint 22.3 and Zorin OS 18.1. For other systems: [Five Linux families](https://belgian-azerty.github.io/en/families.md)
 
 ## Ctrl+Alt+é does not give @, and Ctrl+Alt+E does not give €
 
@@ -47,6 +47,24 @@ out and back in. [Explained in the README](https://github.com/belgian-azerty/bel
 period. Or choose it in the **Belgian keyboard** menu entry.
 
 **Tested:** in emulators.
+
+## The upgrade to Ubuntu 26.04, Linux Mint 23 or Debian 14 stops half-way
+
+**Cause.** That upgrade turns the keyboard folder into a link. With 0.9.11 or older, two files of our package are
+still in it, and then the upgrade refuses.
+
+**Before.** Install 0.9.12 first. It moves its files aside for a moment and puts them back afterwards.
+
+**Already stuck?** Type:
+```
+sudo dpkg -r belgian-azerty-windows
+sudo apt -f install
+sudo apt full-upgrade
+```
+Then install 0.9.12 and type `sudo be-azerty-fix system`.
+
+**Tested:** in test containers (Ubuntu 24.04 to 26.04, Debian 13 to the next Debian). Not with Ubuntu's or Mint's
+own upgrade tools.
 
 ## The live USB or the installer starts without a Belgian keyboard
 

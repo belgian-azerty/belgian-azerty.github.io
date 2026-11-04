@@ -2,7 +2,7 @@
 
 # Install on a system that is already running
 
-For Linux Mint 22.3 and Zorin OS 18.1. You type something into a terminal three times.
+For Linux Mint 22.3 and Zorin OS 18.1. You type something into a terminal three times. Another system? [Five Linux families](https://belgian-azerty.github.io/en/families.md)
 
 ## Step 1. Add keyd.
 
@@ -18,11 +18,11 @@ sudo apt install keyd
 
 ## Step 2. Install our two packages.
 
-Download them from the [0.9.10 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.10) into an empty folder. Open a
+Download them from the [0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into an empty folder. Open a
 terminal there and type:
 
 ```
-sudo apt install ./keyd-belgian-windows_0.9.10_all.deb ./belgian-azerty-windows_0.9.10_all.deb
+sudo apt install ./keyd-belgian-windows_0.9.12_all.deb ./belgian-azerty-windows_0.9.12_all.deb
 sudo be-azerty-fix system
 ```
 
@@ -39,6 +39,8 @@ profile and the Linux profile, with a period or a comma.
 - The Ctrl+Alt rules apply to every keyboard you plug in, including an external US keyboard.
 - On Zorin, Caps Lock stays as on Linux by default. That is because of a GNOME bug with password windows. You can
   switch on the Windows Caps Lock yourself. [Explained in the README](https://github.com/belgian-azerty/belgian-azerty-linux#caps-lock-on-zorin)
+- Moving to Linux Mint 23 or Ubuntu 26.04 later? Install 0.9.12 first. With 0.9.11 or older, the upgrade stops
+  half-way.
 - All known problems are in the [README, under "Known issues"](https://github.com/belgian-azerty/belgian-azerty-linux#known-issues).
 
 - [Check your download first](https://belgian-azerty.github.io/en/verify.md)

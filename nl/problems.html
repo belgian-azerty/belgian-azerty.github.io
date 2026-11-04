@@ -19,15 +19,15 @@
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
-    <nav class="nav" aria-label="Menu"><a href="install.html">Installeren</a><a href="verify.html">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problemen</a><a href="testing.html">Hoe we testen</a></nav>
+    <nav class="nav" aria-label="Menu"><a href="install.html">Installeren</a><a href="families.html">Andere Linux</a><a href="verify.html">Download controleren</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html" aria-current="page">Problemen</a><a href="testing.html">Hoe we testen</a></nav>
     <nav class="langs" aria-label="Taal"><a href="../nl/problems.html" hreflang="nl" lang="nl" aria-current="true">NL</a><a href="../fr/problems.html" hreflang="fr" lang="fr">FR</a><a href="../en/problems.html" hreflang="en" lang="en">EN</a></nav>
   </div>
 </header>
 <main id="main">
-<p class="wrap ver">Voor versie 0.9.10 (31 oktober 2026). Nieuwste versie: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">releasepagina</a>.</p>
+<p class="wrap ver">Voor versie 0.9.12 (3 november 2026). Nieuwste versie: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">releasepagina</a>.</p>
 <article class="wrap prose"><h1>Problemen en oplossingen</h1>
 <p>Hier staan de problemen die we zelf gezien en getest hebben, in de woorden die je zelf zou typen. Dit geldt voor
-Linux Mint 22.3 en Zorin OS 18.1. Op andere systemen is niets getest.</p>
+Linux Mint 22.3 en Zorin OS 18.1. Voor andere systemen: <a class="more" href="families.html">Vijf Linux-families ›</a></p>
 <h2>Ctrl+Alt+é geeft geen @, en Ctrl+Alt+E geeft geen €</h2>
 <p><strong>Oorzaak.</strong> Op Linux werkt alleen de AltGr-toets voor die tekens. Ctrl+Alt doet dat niet, zoals op Windows wel.</p>
 <p><strong>Oplossing.</strong> Installeer keyd en ons pakket keyd-belgian-windows. <a class="more" href="install.html">Naar installeren ›</a></p>
@@ -52,6 +52,18 @@ systeemupdate.</p>
 <p><strong>Oplossing.</strong> <code>sudo DECIMAL=comma be-azerty-fix system</code> voor een komma, <code>sudo DECIMAL=period be-azerty-fix system</code>
 voor een punt. Of kies het in het menu-item <strong>Belgisch toetsenbord</strong>.</p>
 <p><strong>Getest:</strong> in emulators.</p>
+<h2>De upgrade naar Ubuntu 26.04, Linux Mint 23 of Debian 14 stopt halverwege</h2>
+<p><strong>Oorzaak.</strong> Die upgrade maakt van de toetsenbordmap een link. Met 0.9.11 of ouder staan daar nog twee bestanden
+van ons pakket, en dan weigert de upgrade.</p>
+<p><strong>Vooraf.</strong> Installeer eerst 0.9.12. Die zet zijn bestanden even opzij en daarna terug.</p>
+<p><strong>Zit de upgrade al vast?</strong> Typ:</p>
+<pre><code>sudo dpkg -r belgian-azerty-windows
+sudo apt -f install
+sudo apt full-upgrade
+</code></pre>
+<p>Installeer daarna 0.9.12 en typ <code>sudo be-azerty-fix system</code>.</p>
+<p><strong>Getest:</strong> in testcontainers (Ubuntu 24.04 naar 26.04, Debian 13 naar de volgende Debian). Niet met de
+upgradeprogramma's van Ubuntu of Mint zelf.</p>
 <h2>De live-USB of het installatieprogramma start zonder Belgisch toetsenbord</h2>
 <p><strong>Oorzaak.</strong> Mint start met een Amerikaans toetsenbord. Zorin vraagt een taal, maar heeft geen Belgische keuze.</p>
 <p><strong>Oplossing.</strong> Onze stick, of zelf in het startmenu: druk op <code>e</code> en zet <code>keyboard-configuration/layoutcode=be</code> achter de

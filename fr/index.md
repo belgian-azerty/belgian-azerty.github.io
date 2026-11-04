@@ -12,12 +12,13 @@ auquel vous êtes habitué sous Windows. Nous l'ajoutons avec deux petits paquet
 - **Vous choisissez ce que tape la touche du pavé numérique :** un point ou une virgule.
 - **La disposition reste belge.** Aussi pour les nouveaux utilisateurs et après une réinitialisation des réglages. Vos autres dispositions restent en place.
 
-- [Installer (0.9.10)](https://belgian-azerty.github.io/fr/install.md)
+- [Installer (0.9.12)](https://belgian-azerty.github.io/fr/install.md)
 - [Essayer d'abord sur une clé USB](https://belgian-azerty.github.io/fr/stick.md)
 
 **Testé** dans des émulateurs et sur un seul ordinateur portable, pour Linux Mint 22.3 et Zorin OS 18.1.
 **Situation :** un problème ancien dont aucun projet ne s'occupe. Pas encore accepté par les projets Linux.
-**Version :** 0.9.10, 31 octobre 2026.
+**Autres Linux :** des fichiers pour Ubuntu, Debian, Fedora, openSUSE, Arch et cinq systèmes indépendants, testés en conteneurs de test.
+**Version :** 0.9.12, 3 novembre 2026.
 
 ### Choisissez votre chemin
 
@@ -26,6 +27,8 @@ auquel vous êtes habitué sous Windows. Nous l'ajoutons avec deux petits paquet
 **2. Essayer d'abord.** Vous créez une clé USB à partir de l'ISO officielle de Mint ou de Zorin, avec le clavier belge dès le premier écran. C'est une solution provisoire, pas un système d'exploitation à nous. [Vers la clé USB](https://belgian-azerty.github.io/fr/stick.md)
 
 **3. Clavier Mac.** La disposition Apple est une option. L'écran texte et l'écran de déverrouillage du disque gardent la disposition PC. [Vers Mac](https://belgian-azerty.github.io/fr/mac.md)
+
+**4. Un autre système Linux.** Fedora, openSUSE, Arch, Void, NixOS, Gentoo, Slackware ou Solus. Pour chaque système, vous voyez où il en est. [Vers cinq familles Linux](https://belgian-azerty.github.io/fr/families.md)
 
 ### Ce que nous ne faisons pas
 
@@ -39,7 +42,7 @@ D'abord le belge, PC et Mac, entièrement. Les autres pays suivront plus tard, u
 
 ### Le but
 
-Nous voulons que Linux Mint, Zorin OS et les projets sur lesquels ils reposent reprennent eux-mêmes cette solution.
+Nous voulons que les projets Linux reprennent eux-mêmes cette solution.
 D'ici là, c'est un projet communautaire non officiel.
 
 ---

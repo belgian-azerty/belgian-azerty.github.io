@@ -19,14 +19,14 @@
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="index.html"><span class="cap">AltGr</span><span class="name">belgian-azerty</span></a>
-    <nav class="nav" aria-label="Menu"><a href="install.html" aria-current="page">Install</a><a href="verify.html">Check download</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html">Problems</a><a href="testing.html">How we test</a></nav>
+    <nav class="nav" aria-label="Menu"><a href="install.html" aria-current="page">Install</a><a href="families.html">Other Linux</a><a href="verify.html">Check download</a><a href="stick.html">Stick</a><a href="mac.html">Mac</a><a href="problems.html">Problems</a><a href="testing.html">How we test</a></nav>
     <nav class="langs" aria-label="Language"><a href="../nl/install.html" hreflang="nl" lang="nl">NL</a><a href="../fr/install.html" hreflang="fr" lang="fr">FR</a><a href="../en/install.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
   </div>
 </header>
 <main id="main">
-<p class="wrap ver">For version 0.9.10 (31 October 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
+<p class="wrap ver">For version 0.9.12 (3 November 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
 <article class="wrap prose"><h1>Install on a system that is already running</h1>
-<p>For Linux Mint 22.3 and Zorin OS 18.1. You type something into a terminal three times.</p>
+<p>For Linux Mint 22.3 and Zorin OS 18.1. You type something into a terminal three times. Another system? <a class="more" href="families.html">Five Linux families ›</a></p>
 <h2>Step 1. Add keyd.</h2>
 <p>keyd is the program that makes Ctrl+Alt work as AltGr. Ubuntu 24.04, the base of Mint 22 and
 Zorin 18, does not have it. The keyd-team PPA does. That PPA is run by the maintainer of Debian's keyd package; it is
@@ -36,9 +36,9 @@ sudo apt update
 sudo apt install keyd
 </code></pre>
 <h2>Step 2. Install our two packages.</h2>
-<p>Download them from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.10">0.9.10 release page</a> into an empty folder. Open a
+<p>Download them from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">0.9.12 release page</a> into an empty folder. Open a
 terminal there and type:</p>
-<pre><code>sudo apt install ./keyd-belgian-windows_0.9.10_all.deb ./belgian-azerty-windows_0.9.10_all.deb
+<pre><code>sudo apt install ./keyd-belgian-windows_0.9.12_all.deb ./belgian-azerty-windows_0.9.12_all.deb
 sudo be-azerty-fix system
 </code></pre>
 <p>Want a comma on the numeric keypad? Then type <code>sudo DECIMAL=comma be-azerty-fix system</code>.</p>
@@ -51,6 +51,8 @@ profile and the Linux profile, with a period or a comma.</p>
 <li>The Ctrl+Alt rules apply to every keyboard you plug in, including an external US keyboard.</li>
 <li>On Zorin, Caps Lock stays as on Linux by default. That is because of a GNOME bug with password windows. You can
   switch on the Windows Caps Lock yourself. <a class="more" href="https://github.com/belgian-azerty/belgian-azerty-linux#caps-lock-on-zorin">Explained in the README ›</a></li>
+<li>Moving to Linux Mint 23 or Ubuntu 26.04 later? Install 0.9.12 first. With 0.9.11 or older, the upgrade stops
+  half-way.</li>
 <li>All known problems are in the <a href="https://github.com/belgian-azerty/belgian-azerty-linux#known-issues">README, under "Known issues"</a>.</li>
 </ul>
 <div class="btns"><a class="btn primary" href="verify.html">Check your download first <span aria-hidden="true" class="arr">›</span></a></div>

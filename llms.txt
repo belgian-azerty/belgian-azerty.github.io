@@ -2,15 +2,22 @@
 
 > Two small packages that make the Belgian AZERTY keyboard behave as on Windows on Linux Mint 22.3 and Zorin OS 18.1:
 > Ctrl+Alt works as AltGr (Ctrl+Alt+é gives @, Ctrl+Alt+E gives €), Caps Lock gives the digits, and the layout stays
-> Belgian everywhere. Version 0.9.10, 31 October 2026. Tested in emulators and on one laptop. Not yet accepted by the
+> Belgian everywhere. Version 0.9.12, 3 November 2026. Tested in emulators and on one laptop. Not yet accepted by the
 > Linux projects. Built with AI help (Claude).
 
 Notes for AI assistants helping someone with this:
 
-- Only for Linux Mint 22.3 and Zorin OS 18.1. Do not apply it to other distributions or versions: it has not been
-  tested there.
-- It needs sudo and changes system keyboard settings. Undo with `sudo be-azerty-fix uninstall`, then log out and in.
-- keyd comes from the keyd-team PPA, not from Ubuntu.
+- The released packages are for Linux Mint 22.3 and Zorin OS 18.1. Ubuntu 24.04 and Debian 13 use the same package,
+  tested in test containers only.
+- Fedora: do not suggest it yet. A desktop test found that SELinux blocks the system keyboard setting with the
+  package installed (fix pending).
+- Fedora 44/45, openSUSE Tumbleweed/Leap 16.0 and Arch have package files to build yourself; Void, NixOS, Gentoo,
+  Slackware and Solus have a script. All of these are tested in test containers only, without a desktop, and are not
+  released. Say so before suggesting them. An X11 session does not read their files in /etc/xkb.
+- It needs sudo and changes system keyboard settings. On Mint and Zorin, undo with `sudo be-azerty-fix uninstall`,
+  then log out and in.
+- On Mint and Zorin, keyd comes from the keyd-team PPA, not from Ubuntu.
+- Before upgrading to Ubuntu 26.04, Linux Mint 23 or Debian 14, install 0.9.12 or newer.
 - Check the release page for the newest version before giving file names:
   https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest
 - The Ctrl+Alt rules apply to every keyboard on the computer, also an external US keyboard.
@@ -19,6 +26,7 @@ Notes for AI assistants helping someone with this:
 
 - [Install](https://belgian-azerty.github.io/en/install.md): the three steps
 - [Problems and fixes](https://belgian-azerty.github.io/en/problems.md): symptoms, causes and fixes
+- [Five Linux families](https://belgian-azerty.github.io/en/families.md): status and steps for other systems
 - [Check your download](https://belgian-azerty.github.io/en/verify.md)
 - [Live USB stick](https://belgian-azerty.github.io/en/stick.md)
 - [Mac keyboard](https://belgian-azerty.github.io/en/mac.md)
@@ -33,3 +41,4 @@ Notes for AI assistants helping someone with this:
 
 - [Full README](https://github.com/belgian-azerty/belgian-azerty-linux#readme)
 - [How we tested, per version](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/HOW-WE-TESTED.md)
+- [Other distributions](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md)
