@@ -40,24 +40,34 @@ test, pas avec les outils de mise à niveau d'Ubuntu ou de Mint. [Si la mise à 
 
 ## Fedora
 
-**Fedora 44 et 45 : testé en conteneurs de test. Le test sur bureau a trouvé un problème avec SELinux. Correction à venir.**
+**Fedora 44 et 45 : testé en conteneurs de test. Fedora 45 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.**
 
-**Ne l'installez pas encore sur Fedora.** Sur un bureau Fedora dans un émulateur, le clavier a tapé comme sur Mint, y
-compris keyd et les accents. Mais SELinux, activé par défaut sur Fedora, empêche le service clavier du système de lire
-notre fichier dans `/etc/xkb`. Le système refuse alors toute nouvelle disposition, même le belge tout simple, et
-l'écran de connexion reste en américain. SELinux était désactivé dans les conteneurs de test, c'est pourquoi nous ne
-l'avions pas vu.
+Fedora n'a pas keyd. Ces étapes construisent donc aussi keyd 2.6.0, inchangé par rapport à la version officielle.
+Tapez en tant qu'utilisateur normal :
 
-Dès qu'une correction existe et qu'elle est testée, les étapes seront ici. Si vous voulez aider à tester, les étapes
-de construction sont déjà dans [packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
+```
+sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
+git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
+rpmdev-setuptree
+for s in packaging/fedora/*.spec; do spectool -g -R "$s" && rpmbuild -ba "$s"; done
+R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+```
+
+Ensuite, dans le même dossier : `sudo bash be-azerty-fix.sh system`. Cela met le belge en premier pour tout le système
+et pour les réglages GNOME enregistrés de vos utilisateurs.
+
+**Bon à savoir :** sur Fedora, SELinux est activé par défaut. Notre paquet ajoute donc une petite règle SELinux qui
+permet au service clavier de lire nos fichiers. Sans cette règle, Fedora 45 refusait toute disposition et l'écran de
+connexion restait en américain. Avec la règle, l'écran de connexion a tapé en belge, avec Verr. Maj comme sous Windows,
+et Ctrl+Alt+E a donné €. Testé dans une machine virtuelle sur un seul ordinateur portable, pas sur un vrai PC.
 
 ## openSUSE
 
-**Tumbleweed et Leap 16.0 : testé en conteneurs de test, test sur bureau à venir.**
+**Tumbleweed et Leap 16.0 : testé en conteneurs de test. Leap 16.0 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.**
 
-**Attention :** les nouvelles installations d'openSUSE utilisent aussi SELinux. Nous n'avons pas encore testé si le
-même problème que sur Fedora s'y produit. SELinux était désactivé dans les conteneurs de test. Essayez donc
-d'abord dans une machine virtuelle.
+Les nouvelles installations d'openSUSE utilisent aussi SELinux. Notre paquet ajoute la même petite règle que sur
+Fedora. Sur Leap 16.0, l'écran de connexion a ensuite tapé en belge, aussi après un redémarrage. Tumbleweed avec
+SELinux n'est pas encore testé.
 
 openSUSE a keyd lui-même. Tapez en tant qu'utilisateur normal :
 
@@ -128,9 +138,9 @@ Testé en conteneurs de test. Sans systemd, réglez les choix dans les réglages
 
 ## Pas encore testé en dehors de Mint et Zorin
 
-- Un vrai bureau (GNOME, KDE) et l'écran de connexion. GNOME sous Wayland devrait fonctionner, mais n'est pas testé.
-  Pour KDE Plasma, nous ne savons pas.
-- keyd en marche, donc Ctrl+Alt comme AltGr pendant la frappe.
+- Un bureau sur Arch et sur les systèmes indépendants. L'écran de connexion de GNOME n'est testé que sur Fedora 45 et
+  Leap 16.0, dans une machine virtuelle. Pour KDE Plasma, nous ne savons pas.
+- keyd au quotidien.
 - La console texte et l'écran de déverrouillage du disque.
 - Une vraie installation ou un vrai PC.
 

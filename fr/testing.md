@@ -15,8 +15,8 @@
   conteneurs de test.
 - Fedora, openSUSE, Arch, Void, NixOS, Gentoo, Slackware et Solus : en conteneurs de test, sans bureau.
   [Cinq familles Linux](https://belgian-azerty.github.io/fr/families.md)
-- Fedora 45 sur un bureau dans un émulateur : la frappe fonctionne comme sur Mint, mais SELinux bloque le réglage
-  clavier du système. Correction à venir.
+- Fedora 45 et openSUSE Leap 16.0 sur un bureau dans une machine virtuelle, avec SELinux activé : l'écran de
+  connexion tape en belge, avec Verr. Maj comme sous Windows.
 
 **Pas encore testé**
 - Un vrai clavier Apple.

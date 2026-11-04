@@ -38,22 +38,32 @@ stops half-way. Tested with a full package upgrade in test containers, not with 
 
 ## Fedora
 
-**Fedora 44 and 45: tested in test containers. The desktop test found a problem with SELinux. Fix to follow.**
+**Fedora 44 and 45: tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.**
 
-**Do not install it on Fedora yet.** On a Fedora desktop in an emulator, the keyboard typed as on Mint, including keyd
-and the accents. But SELinux, which is on by default on Fedora, does not let the system's keyboard service read our
-file in `/etc/xkb`. Because of that, the system refuses every new layout, even plain Belgian, and the login screen
-stays US. SELinux was off in the test containers, which is why we did not see it there.
+Fedora has no keyd. So these steps also build keyd 2.6.0, unchanged from the official release. Type as a normal user:
 
-Once there is a fix and it is tested, the steps will be here. If you want to help test, the build steps are already in
-[packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
+```
+sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
+git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
+rpmdev-setuptree
+for s in packaging/fedora/*.spec; do spectool -g -R "$s" && rpmbuild -ba "$s"; done
+R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+```
+
+Then, in the same folder: `sudo bash be-azerty-fix.sh system`. This puts Belgian first for the whole system and for
+the stored GNOME settings of your users.
+
+**Good to know:** SELinux is on by default on Fedora. So our package adds a small SELinux rule that lets the keyboard
+service read our files. Without that rule, Fedora 45 refused every layout and the login screen stayed US. With the rule,
+the login screen typed Belgian, with Caps Lock as on Windows, and Ctrl+Alt+E gave €. Tested in a virtual machine on one
+laptop, not on a real PC.
 
 ## openSUSE
 
-**Tumbleweed and Leap 16.0: tested in test containers, desktop test to follow.**
+**Tumbleweed and Leap 16.0: tested in test containers. Leap 16.0 also on a desktop in a virtual machine, with SELinux on.**
 
-**Note:** new openSUSE installations also use SELinux. Whether the same problem as on Fedora happens there has not
-been tested yet. SELinux was off in the test containers. So try it in a virtual machine first.
+New openSUSE installations also use SELinux. Our package adds the same small rule as on Fedora. On Leap 16.0 the
+login screen then typed Belgian, also after a restart. Tumbleweed with SELinux has not been tested yet.
 
 openSUSE has keyd itself. Type as a normal user:
 
@@ -123,9 +133,9 @@ Tested in test containers. Without systemd, set the choices in your desktop's ke
 
 ## Not yet tested outside Mint and Zorin
 
-- A real desktop (GNOME, KDE) and the login screen. GNOME on Wayland should work, but is not tested. For KDE Plasma we
-  do not know.
-- keyd running, so Ctrl+Alt as AltGr while typing.
+- A desktop on Arch and on the independent systems. GNOME's login screen is only tested on Fedora 45 and Leap 16.0,
+  in a virtual machine. For KDE Plasma we do not know.
+- keyd in daily use.
 - The text console and the disk unlock screen.
 - A real installation or a real PC.
 

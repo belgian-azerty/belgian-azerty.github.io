@@ -13,8 +13,8 @@
 - Een volledige pakketupgrade van Ubuntu 24.04 naar 26.04 en van Debian 13 naar de volgende Debian, in testcontainers.
 - Fedora, openSUSE, Arch, Void, NixOS, Gentoo, Slackware en Solus: in testcontainers, zonder bureaublad.
   [Vijf Linux-families](https://belgian-azerty.github.io/nl/families.md)
-- Fedora 45 op een bureaublad in een emulator: het typen werkt zoals op Mint, maar SELinux blokkeert de
-  systeeminstelling van het toetsenbord. Oplossing volgt.
+- Fedora 45 en openSUSE Leap 16.0 op een bureaublad in een virtuele machine, met SELinux aan: het aanmeldscherm typt
+  Belgisch, met Caps Lock zoals op Windows.
 
 **Nog niet getest**
 - Een echt Apple-toetsenbord.

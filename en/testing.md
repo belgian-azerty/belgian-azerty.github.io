@@ -13,8 +13,8 @@
 - A full package upgrade from Ubuntu 24.04 to 26.04 and from Debian 13 to the next Debian, in test containers.
 - Fedora, openSUSE, Arch, Void, NixOS, Gentoo, Slackware and Solus: in test containers, without a desktop.
   [Five Linux families](https://belgian-azerty.github.io/en/families.md)
-- Fedora 45 on a desktop in an emulator: typing works as on Mint, but SELinux blocks the system keyboard setting.
-  Fix to follow.
+- Fedora 45 and openSUSE Leap 16.0 on a desktop in a virtual machine, with SELinux on: the login screen types
+  Belgian, with Caps Lock as on Windows.
 
 **Not yet tested**
 - A real Apple keyboard.

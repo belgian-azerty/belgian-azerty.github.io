@@ -38,22 +38,33 @@ Mint zelf. [Wat als de upgrade al vastzit: Problemen](https://belgian-azerty.git
 
 ## Fedora
 
-**Fedora 44 en 45: getest in testcontainers. De bureaubladtest vond een probleem met SELinux. Oplossing volgt.**
+**Fedora 44 en 45: getest in testcontainers. Fedora 45 ook op een bureaublad in een virtuele machine, met SELinux aan.**
 
-**Installeer het nu nog niet op Fedora.** Op een Fedora-bureaublad in een emulator typte het toetsenbord zoals op
-Mint, ook met keyd en de accenten. Maar SELinux, dat op Fedora standaard aan staat, laat de toetsenborddienst van het
-systeem ons bestand in `/etc/xkb` niet lezen. Daardoor weigert het systeem elke nieuwe indeling, ook gewoon Belgisch,
-en blijft het aanmeldscherm Amerikaans. In de testcontainers stond SELinux uit, daarom zagen we het daar niet.
+Fedora heeft geen keyd. Daarom bouwen deze stappen ook keyd 2.6.0, ongewijzigd uit de officiële versie. Typ als
+gewone gebruiker:
 
-Zodra er een oplossing is en die getest is, komen de stappen hier. Wie wil meetesten, vindt de bouwstappen nu al in
-[packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
+```
+sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
+git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
+rpmdev-setuptree
+for s in packaging/fedora/*.spec; do spectool -g -R "$s" && rpmbuild -ba "$s"; done
+R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+```
+
+Daarna, in dezelfde map: `sudo bash be-azerty-fix.sh system`. Dat zet Belgisch voorop voor het hele systeem en voor
+de bewaarde GNOME-instellingen van je gebruikers.
+
+**Goed om te weten:** op Fedora staat SELinux standaard aan. Ons pakket voegt daarom een kleine SELinux-regel toe,
+zodat de toetsenborddienst onze bestanden mag lezen. Zonder die regel weigerde Fedora 45 elke indeling en bleef het
+aanmeldscherm Amerikaans. Met de regel typte het aanmeldscherm Belgisch, met Caps Lock zoals op Windows, en
+Ctrl+Alt+E gaf €. Getest in een virtuele machine op één laptop, niet op een echte pc.
 
 ## openSUSE
 
-**Tumbleweed en Leap 16.0: getest in testcontainers, bureaubladtest volgt.**
+**Tumbleweed en Leap 16.0: getest in testcontainers. Leap 16.0 ook op een bureaublad in een virtuele machine, met SELinux aan.**
 
-**Let op:** nieuwe installaties van openSUSE gebruiken ook SELinux. Of hetzelfde probleem als op Fedora daar
-optreedt, is nog niet getest. In de testcontainers stond SELinux uit. Probeer het daarom eerst in een virtuele machine.
+Nieuwe installaties van openSUSE gebruiken ook SELinux. Ons pakket voegt dezelfde kleine regel toe als op Fedora. Op
+Leap 16.0 typte het aanmeldscherm daarna Belgisch, ook na een herstart. Tumbleweed met SELinux is nog niet getest.
 
 openSUSE heeft keyd zelf. Typ als gewone gebruiker:
 
@@ -122,9 +133,9 @@ Getest in testcontainers. Zonder systemd zet je de keuzes in de toetsenbordinste
 
 ## Nog niet getest buiten Mint en Zorin
 
-- Een echt bureaublad (GNOME, KDE) en het aanmeldscherm. GNOME op Wayland zou moeten werken, maar is niet getest.
-  Voor KDE Plasma weten we het niet.
-- keyd in werking, dus Ctrl+Alt als AltGr tijdens het typen.
+- Een bureaublad op Arch en op de onafhankelijke systemen. Het aanmeldscherm van GNOME is alleen getest op Fedora 45
+  en Leap 16.0, in een virtuele machine. Voor KDE Plasma weten we het niet.
+- keyd in dagelijks gebruik.
 - De tekstconsole en het ontgrendelscherm van de schijf.
 - Een echte installatie of een echte pc.
 
