@@ -36,6 +36,9 @@ type `sudo apt install keyd` instead of using the PPA.
 stops half-way. Tested with a full package upgrade in test containers, not with Ubuntu's or Mint's own upgrade tools.
 - [If the upgrade is already stuck: Problems](https://belgian-azerty.github.io/en/problems.md)
 
+**On Ubuntu 26.04 (GNOME 50):** if you change a keyboard choice, such as Caps Lock or the accents, log out and back in.
+Only then does the new choice work. Seen in an emulator on the test laptop.
+
 ## Fedora
 
 **Fedora 44 and 45: tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.**

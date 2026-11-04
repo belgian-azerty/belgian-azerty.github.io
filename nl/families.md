@@ -36,6 +36,9 @@ Debian zit keyd al in het systeem: typ `sudo apt install keyd` in plaats van de 
 upgrade halverwege. Getest met een volledige pakketupgrade in testcontainers, niet met de upgradeprogramma's van Ubuntu of
 Mint zelf. [Wat als de upgrade al vastzit: Problemen](https://belgian-azerty.github.io/nl/problems.md)
 
+**Op Ubuntu 26.04 (GNOME 50):** verander je een toetsenbordkeuze, bijvoorbeeld Caps Lock of de accenten, meld je dan
+af en weer aan. Pas daarna werkt de nieuwe keuze. Gezien in een emulator op de testlaptop.
+
 ## Fedora
 
 **Fedora 44 en 45: getest in testcontainers. Fedora 45 ook op een bureaublad in een virtuele machine, met SELinux aan.**

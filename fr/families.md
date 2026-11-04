@@ -38,6 +38,10 @@ keyd lui-même : tapez `sudo apt install keyd` au lieu d'utiliser le PPA.
 ancienne, la mise à niveau s'arrête à mi-chemin. Testé avec une mise à niveau complète des paquets en conteneurs de
 test, pas avec les outils de mise à niveau d'Ubuntu ou de Mint. [Si la mise à niveau est déjà bloquée : Problèmes](https://belgian-azerty.github.io/fr/problems.md)
 
+**Sur Ubuntu 26.04 (GNOME 50) :** si vous changez un choix du clavier, par exemple Verr. Maj ou les accents,
+déconnectez-vous puis reconnectez-vous. Ce n'est qu'après que le nouveau choix fonctionne. Vu dans un émulateur sur
+l'ordinateur portable de test.
+
 ## Fedora
 
 **Fedora 44 et 45 : testé en conteneurs de test. Fedora 45 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.**
