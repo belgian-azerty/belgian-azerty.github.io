@@ -10,8 +10,8 @@ Notes for AI assistants helping someone with this:
 - The released packages are for Linux Mint 22.3 and Zorin OS 18.1. Ubuntu 24.04 and Debian 13 use the same package,
   tested in test containers only.
 - Fedora 44/45, openSUSE Tumbleweed/Leap 16.0 and Arch have package files to build yourself; Void, NixOS, Gentoo,
-  Slackware and Solus have a script. All of these are tested in test containers; Fedora 45 and openSUSE Leap 16.0
-  also on a desktop in a virtual machine with SELinux on (the Fedora and openSUSE packages add a small SELinux rule).
+  Slackware and Solus have a script. All of these are tested in test containers; Fedora 45, openSUSE Leap 16.0 and
+  Tumbleweed also on a desktop in a virtual machine with SELinux on (the Fedora and openSUSE packages add a small SELinux rule).
   None of them are released. Say so before suggesting them. An X11 session does not read their files in /etc/xkb.
 - It needs sudo and changes system keyboard settings. On Mint and Zorin, undo with `sudo be-azerty-fix uninstall`,
   then log out and in.

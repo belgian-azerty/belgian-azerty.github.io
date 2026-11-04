@@ -71,9 +71,11 @@ service read our files. Without that rule, Fedora 45 refused every layout and th
 the login screen typed Belgian, with Caps Lock as on Windows, and Ctrl+Alt+E gave €. Tested in a virtual machine on one
 laptop, not on a real PC.</p>
 <h2>openSUSE</h2>
-<p><strong>Tumbleweed and Leap 16.0: tested in test containers. Leap 16.0 also on a desktop in a virtual machine, with SELinux on.</strong></p>
-<p>New openSUSE installations also use SELinux. Our package adds the same small rule as on Fedora. On Leap 16.0 the
-login screen then typed Belgian, also after a restart. Tumbleweed with SELinux has not been tested yet.</p>
+<p><strong>Tumbleweed and Leap 16.0: tested in test containers, and both on a desktop in a virtual machine, with SELinux on.</strong></p>
+<p>New openSUSE installations also use SELinux. Fedora's problem did not happen on openSUSE, but our package adds the
+same small rule, and it works there too. On Leap 16.0 (GNOME) the login screen typed Belgian, also after a restart. On
+Tumbleweed (KDE) it works too, but at the login screen Caps Lock still works the Linux way: that screen runs on X11.
+After logging in, Caps Lock works as on Windows.</p>
 <p>openSUSE has keyd itself. Type as a normal user:</p>
 <pre><code>sudo zypper install rpm-build systemd-rpm-macros git curl
 git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
@@ -121,8 +123,8 @@ sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
 <p>Tested in test containers. Without systemd, set the choices in your desktop's keyboard setting.</p>
 <h2>Not yet tested outside Mint and Zorin</h2>
 <ul>
-<li>A desktop on Arch and on the independent systems. GNOME's login screen is only tested on Fedora 45 and Leap 16.0,
-  in a virtual machine. For KDE Plasma we do not know.</li>
+<li>A desktop on Arch and on the independent systems. The login screen is only tested on Fedora 45 and openSUSE, in a
+  virtual machine. KDE Plasma only on Tumbleweed.</li>
 <li>keyd in daily use.</li>
 <li>The text console and the disk unlock screen.</li>
 <li>A real installation or a real PC.</li>

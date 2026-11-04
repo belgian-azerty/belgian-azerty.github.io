@@ -64,10 +64,12 @@ Ctrl+Alt+E gaf €. Getest in een virtuele machine op één laptop, niet op een 
 
 ## openSUSE
 
-**Tumbleweed en Leap 16.0: getest in testcontainers. Leap 16.0 ook op een bureaublad in een virtuele machine, met SELinux aan.**
+**Tumbleweed en Leap 16.0: getest in testcontainers, en allebei op een bureaublad in een virtuele machine, met SELinux aan.**
 
-Nieuwe installaties van openSUSE gebruiken ook SELinux. Ons pakket voegt dezelfde kleine regel toe als op Fedora. Op
-Leap 16.0 typte het aanmeldscherm daarna Belgisch, ook na een herstart. Tumbleweed met SELinux is nog niet getest.
+Nieuwe installaties van openSUSE gebruiken ook SELinux. Het probleem van Fedora trad op openSUSE niet op, maar ons
+pakket voegt dezelfde kleine regel toe, en die werkt er ook. Op Leap 16.0 (GNOME) typte het aanmeldscherm Belgisch,
+ook na een herstart. Op Tumbleweed (KDE) werkt het ook, maar op het aanmeldscherm werkt Caps Lock nog op de
+Linux-manier: dat scherm draait op X11. Na het aanmelden werkt Caps Lock zoals op Windows.
 
 openSUSE heeft keyd zelf. Typ als gewone gebruiker:
 
@@ -136,8 +138,8 @@ Getest in testcontainers. Zonder systemd zet je de keuzes in de toetsenbordinste
 
 ## Nog niet getest buiten Mint en Zorin
 
-- Een bureaublad op Arch en op de onafhankelijke systemen. Het aanmeldscherm van GNOME is alleen getest op Fedora 45
-  en Leap 16.0, in een virtuele machine. Voor KDE Plasma weten we het niet.
+- Een bureaublad op Arch en op de onafhankelijke systemen. Het aanmeldscherm is alleen getest op Fedora 45 en
+  openSUSE, in een virtuele machine. KDE Plasma alleen op Tumbleweed.
 - keyd in dagelijks gebruik.
 - De tekstconsole en het ontgrendelscherm van de schijf.
 - Een echte installatie of een echte pc.

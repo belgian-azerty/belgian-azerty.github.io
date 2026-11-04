@@ -17,6 +17,8 @@
   [Cinq familles Linux](https://belgian-azerty.github.io/fr/families.md)
 - Fedora 45 et openSUSE Leap 16.0 sur un bureau dans une machine virtuelle, avec SELinux activé : l'écran de
   connexion tape en belge, avec Verr. Maj comme sous Windows.
+- openSUSE Tumbleweed avec KDE dans une machine virtuelle, avec SELinux activé : l'écran de connexion tape en belge,
+  mais avec Verr. Maj à la manière de Linux (X11). Après la connexion, comme sous Windows.
 
 **Pas encore testé**
 - Un vrai clavier Apple.

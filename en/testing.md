@@ -15,6 +15,8 @@
   [Five Linux families](https://belgian-azerty.github.io/en/families.md)
 - Fedora 45 and openSUSE Leap 16.0 on a desktop in a virtual machine, with SELinux on: the login screen types
   Belgian, with Caps Lock as on Windows.
+- openSUSE Tumbleweed with KDE in a virtual machine, with SELinux on: the login screen types Belgian, but with Caps
+  Lock the Linux way (X11). After logging in, as on Windows.
 
 **Not yet tested**
 - A real Apple keyboard.

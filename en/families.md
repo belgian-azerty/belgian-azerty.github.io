@@ -63,10 +63,12 @@ laptop, not on a real PC.
 
 ## openSUSE
 
-**Tumbleweed and Leap 16.0: tested in test containers. Leap 16.0 also on a desktop in a virtual machine, with SELinux on.**
+**Tumbleweed and Leap 16.0: tested in test containers, and both on a desktop in a virtual machine, with SELinux on.**
 
-New openSUSE installations also use SELinux. Our package adds the same small rule as on Fedora. On Leap 16.0 the
-login screen then typed Belgian, also after a restart. Tumbleweed with SELinux has not been tested yet.
+New openSUSE installations also use SELinux. Fedora's problem did not happen on openSUSE, but our package adds the
+same small rule, and it works there too. On Leap 16.0 (GNOME) the login screen typed Belgian, also after a restart. On
+Tumbleweed (KDE) it works too, but at the login screen Caps Lock still works the Linux way: that screen runs on X11.
+After logging in, Caps Lock works as on Windows.
 
 openSUSE has keyd itself. Type as a normal user:
 
@@ -136,8 +138,8 @@ Tested in test containers. Without systemd, set the choices in your desktop's ke
 
 ## Not yet tested outside Mint and Zorin
 
-- A desktop on Arch and on the independent systems. GNOME's login screen is only tested on Fedora 45 and Leap 16.0,
-  in a virtual machine. For KDE Plasma we do not know.
+- A desktop on Arch and on the independent systems. The login screen is only tested on Fedora 45 and openSUSE, in a
+  virtual machine. KDE Plasma only on Tumbleweed.
 - keyd in daily use.
 - The text console and the disk unlock screen.
 - A real installation or a real PC.

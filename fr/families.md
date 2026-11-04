@@ -67,11 +67,13 @@ et Ctrl+Alt+E a donné €. Testé dans une machine virtuelle sur un seul ordina
 
 ## openSUSE
 
-**Tumbleweed et Leap 16.0 : testé en conteneurs de test. Leap 16.0 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.**
+**Tumbleweed et Leap 16.0 : testé en conteneurs de test, et les deux sur un bureau dans une machine virtuelle, avec SELinux activé.**
 
-Les nouvelles installations d'openSUSE utilisent aussi SELinux. Notre paquet ajoute la même petite règle que sur
-Fedora. Sur Leap 16.0, l'écran de connexion a ensuite tapé en belge, aussi après un redémarrage. Tumbleweed avec
-SELinux n'est pas encore testé.
+Les nouvelles installations d'openSUSE utilisent aussi SELinux. Le problème de Fedora ne s'est pas produit sur
+openSUSE, mais notre paquet ajoute la même petite règle, et elle y fonctionne aussi. Sur Leap 16.0 (GNOME), l'écran de
+connexion a tapé en belge, aussi après un redémarrage. Sur Tumbleweed (KDE), cela fonctionne aussi, mais sur l'écran
+de connexion, Verr. Maj fonctionne encore à la manière de Linux : cet écran tourne sous X11. Après la connexion,
+Verr. Maj fonctionne comme sous Windows.
 
 openSUSE a keyd lui-même. Tapez en tant qu'utilisateur normal :
 
@@ -142,8 +144,8 @@ Testé en conteneurs de test. Sans systemd, réglez les choix dans les réglages
 
 ## Pas encore testé en dehors de Mint et Zorin
 
-- Un bureau sur Arch et sur les systèmes indépendants. L'écran de connexion de GNOME n'est testé que sur Fedora 45 et
-  Leap 16.0, dans une machine virtuelle. Pour KDE Plasma, nous ne savons pas.
+- Un bureau sur Arch et sur les systèmes indépendants. L'écran de connexion n'est testé que sur Fedora 45 et openSUSE,
+  dans une machine virtuelle. KDE Plasma uniquement sur Tumbleweed.
 - keyd au quotidien.
 - La console texte et l'écran de déverrouillage du disque.
 - Une vraie installation ou un vrai PC.

@@ -71,9 +71,11 @@ zodat de toetsenborddienst onze bestanden mag lezen. Zonder die regel weigerde F
 aanmeldscherm Amerikaans. Met de regel typte het aanmeldscherm Belgisch, met Caps Lock zoals op Windows, en
 Ctrl+Alt+E gaf €. Getest in een virtuele machine op één laptop, niet op een echte pc.</p>
 <h2>openSUSE</h2>
-<p><strong>Tumbleweed en Leap 16.0: getest in testcontainers. Leap 16.0 ook op een bureaublad in een virtuele machine, met SELinux aan.</strong></p>
-<p>Nieuwe installaties van openSUSE gebruiken ook SELinux. Ons pakket voegt dezelfde kleine regel toe als op Fedora. Op
-Leap 16.0 typte het aanmeldscherm daarna Belgisch, ook na een herstart. Tumbleweed met SELinux is nog niet getest.</p>
+<p><strong>Tumbleweed en Leap 16.0: getest in testcontainers, en allebei op een bureaublad in een virtuele machine, met SELinux aan.</strong></p>
+<p>Nieuwe installaties van openSUSE gebruiken ook SELinux. Het probleem van Fedora trad op openSUSE niet op, maar ons
+pakket voegt dezelfde kleine regel toe, en die werkt er ook. Op Leap 16.0 (GNOME) typte het aanmeldscherm Belgisch,
+ook na een herstart. Op Tumbleweed (KDE) werkt het ook, maar op het aanmeldscherm werkt Caps Lock nog op de
+Linux-manier: dat scherm draait op X11. Na het aanmelden werkt Caps Lock zoals op Windows.</p>
 <p>openSUSE heeft keyd zelf. Typ als gewone gebruiker:</p>
 <pre><code>sudo zypper install rpm-build systemd-rpm-macros git curl
 git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
@@ -120,8 +122,8 @@ sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
 <p>Getest in testcontainers. Zonder systemd zet je de keuzes in de toetsenbordinstelling van je bureaublad.</p>
 <h2>Nog niet getest buiten Mint en Zorin</h2>
 <ul>
-<li>Een bureaublad op Arch en op de onafhankelijke systemen. Het aanmeldscherm van GNOME is alleen getest op Fedora 45
-  en Leap 16.0, in een virtuele machine. Voor KDE Plasma weten we het niet.</li>
+<li>Een bureaublad op Arch en op de onafhankelijke systemen. Het aanmeldscherm is alleen getest op Fedora 45 en
+  openSUSE, in een virtuele machine. KDE Plasma alleen op Tumbleweed.</li>
 <li>keyd in dagelijks gebruik.</li>
 <li>De tekstconsole en het ontgrendelscherm van de schijf.</li>
 <li>Een echte installatie of een echte pc.</li>

@@ -15,6 +15,8 @@
   [Vijf Linux-families](https://belgian-azerty.github.io/nl/families.md)
 - Fedora 45 en openSUSE Leap 16.0 op een bureaublad in een virtuele machine, met SELinux aan: het aanmeldscherm typt
   Belgisch, met Caps Lock zoals op Windows.
+- openSUSE Tumbleweed met KDE in een virtuele machine, met SELinux aan: het aanmeldscherm typt Belgisch, maar met
+  Caps Lock op de Linux-manier (X11). Na het aanmelden zoals op Windows.
 
 **Nog niet getest**
 - Een echt Apple-toetsenbord.
