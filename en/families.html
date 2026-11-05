@@ -31,6 +31,8 @@ not equally far everywhere. Below you see how far it is for each system.</p>
 <h3>What does the status mean?</h3>
 <ul>
 <li><strong>Released:</strong> there is a version to download. Tested in emulators and on one real laptop.</li>
+<li><strong>Package on the release page:</strong> ready-made packages to download. Tested in test containers and on a desktop in
+  a virtual machine, not yet on a real PC.</li>
 <li><strong>Tested in test containers:</strong> tested in a closed-off test system without a desktop. There is nothing to download
   yet: you build the package yourself, with the steps below. A test on a real desktop will follow.</li>
 <li><strong>Script:</strong> not a package, but a small script. Tested in test containers. Works only on desktops that use Wayland.</li>
@@ -56,35 +58,32 @@ stops half-way. Tested with a full package upgrade in test containers, not with 
 <p><strong>On Ubuntu 26.04 (GNOME 50):</strong> if you change a keyboard choice, such as Caps Lock or the accents, log out and back in.
 Only then does the new choice work. Seen in an emulator on the test laptop.</p>
 <h2>Fedora</h2>
-<p><strong>Fedora 44 and 45: tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.</strong></p>
-<p>Fedora has no keyd. So these steps also build keyd 2.6.0, unchanged from the official release. Type as a normal user:</p>
-<pre><code>sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
-git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
-rpmdev-setuptree
-for s in packaging/fedora/*.spec; do spectool -g -R &quot;$s&quot; &amp;&amp; rpmbuild -ba &quot;$s&quot;; done
-R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+<p><strong>Fedora 44 and 45: package on the release page. Tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.</strong></p>
+<p>Download the three files for your Fedora from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">0.9.12 release page</a> into one folder: belgian-azerty-windows,
+keyd-belgian-windows and keyd. Fedora has no keyd of its own; this is keyd 2.6.0, unchanged from the official release.
+The packages are not signed. So check them first, then install them:</p>
+<pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 </code></pre>
-<p>Then, in the same folder: <code>sudo bash be-azerty-fix.sh system</code>. This puts Belgian first for the whole system and for
-the stored GNOME settings of your users.</p>
+<p>On Fedora 44 it says <code>fc44</code> instead of <code>fc45</code>. Then switch the choices on (see "Switching the choices on" below).
+Prefer to build it yourself? The steps are in <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
 <p><strong>Good to know:</strong> SELinux is on by default on Fedora. So our package adds a small SELinux rule that lets the keyboard
 service read our files. Without that rule, Fedora 45 refused every layout and the login screen stayed US. With the rule,
 the login screen typed Belgian, with Caps Lock as on Windows, and Ctrl+Alt+E gave €. Tested in a virtual machine on one
 laptop, not on a real PC.</p>
 <h2>openSUSE</h2>
-<p><strong>Tumbleweed and Leap 16.0: tested in test containers, and both on a desktop in a virtual machine, with SELinux on.</strong></p>
+<p><strong>Tumbleweed and Leap 16.0: package on the release page. Tested in test containers, and both on a desktop in a virtual machine, with SELinux on.</strong></p>
 <p>New openSUSE installations also use SELinux. Fedora's problem did not happen on openSUSE, but our package adds the
 same small rule, and it works there too. On Leap 16.0 (GNOME) the login screen typed Belgian, also after a restart. On
 Tumbleweed (KDE) it works too, but at the login screen Caps Lock still works the Linux way: that screen runs on X11.
 After logging in, Caps Lock works as on Windows.</p>
-<p>openSUSE has keyd itself. Type as a normal user:</p>
-<pre><code>sudo zypper install rpm-build systemd-rpm-macros git curl
-git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
-SRC=$(rpm --eval %_sourcedir); mkdir -p &quot;$SRC&quot;
-curl -L -o &quot;$SRC&quot;/belgian-azerty-linux-0.9.12.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.12.tar.gz
-for s in packaging/opensuse/*.spec; do rpmbuild -ba &quot;$s&quot;; done
-sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.12-*.rpm
+<p>openSUSE has keyd itself. Download the two files for your version from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">0.9.12 release page</a> into one folder.
+The packages are not signed. So check them first, then install them:</p>
+<pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
 </code></pre>
-<p>Then switch the choices on (see "Switching the choices on" below).</p>
+<p>On Leap 16.0 it says <code>leap16.0</code> instead of <code>tumbleweed</code>. Then switch the choices on (see "Switching the choices on"
+below). Prefer to build it yourself? The steps are in <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
 <h2>Arch</h2>
 <p><strong>Arch Linux: tested in test containers, desktop test to follow.</strong></p>
 <p>Arch has keyd itself. Type as a normal user:</p>
@@ -116,7 +115,7 @@ sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
   SlackBuilds.org. The rules for keyd are in <code>keyd/be-winaltgr.conf</code>. This was not tested here.</li>
 <li>On NixOS your configuration manages the <code>/etc</code> folder. Whether a rebuild leaves our files in place was not checked.</li>
 </ul>
-<h2>Switching the choices on (openSUSE, Arch and the independent systems)</h2>
+<h2>Switching the choices on (Fedora, openSUSE, Arch and the independent systems)</h2>
 <p>For the whole system, including the login screen and new users, if your system has systemd:</p>
 <pre><code>sudo localectl set-x11-keymap be pc105 &quot;&quot; caps:be_windows,be_azerty:accents
 </code></pre>

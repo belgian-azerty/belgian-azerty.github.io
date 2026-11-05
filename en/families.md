@@ -8,6 +8,8 @@ not equally far everywhere. Below you see how far it is for each system.
 ### What does the status mean?
 
 - **Released:** there is a version to download. Tested in emulators and on one real laptop.
+- **Package on the release page:** ready-made packages to download. Tested in test containers and on a desktop in
+  a virtual machine, not yet on a real PC.
 - **Tested in test containers:** tested in a closed-off test system without a desktop. There is nothing to download
   yet: you build the package yourself, with the steps below. A test on a real desktop will follow.
 - **Script:** not a package, but a small script. Tested in test containers. Works only on desktops that use Wayland.
@@ -41,20 +43,19 @@ Only then does the new choice work. Seen in an emulator on the test laptop.
 
 ## Fedora
 
-**Fedora 44 and 45: tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.**
+**Fedora 44 and 45: package on the release page. Tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.**
 
-Fedora has no keyd. So these steps also build keyd 2.6.0, unchanged from the official release. Type as a normal user:
+Download the three files for your Fedora from the [0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into one folder: belgian-azerty-windows,
+keyd-belgian-windows and keyd. Fedora has no keyd of its own; this is keyd 2.6.0, unchanged from the official release.
+The packages are not signed. So check them first, then install them:
 
 ```
-sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
-git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
-rpmdev-setuptree
-for s in packaging/fedora/*.spec; do spectool -g -R "$s" && rpmbuild -ba "$s"; done
-R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 ```
 
-Then, in the same folder: `sudo bash be-azerty-fix.sh system`. This puts Belgian first for the whole system and for
-the stored GNOME settings of your users.
+On Fedora 44 it says `fc44` instead of `fc45`. Then switch the choices on (see "Switching the choices on" below).
+Prefer to build it yourself? The steps are in [packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
 
 **Good to know:** SELinux is on by default on Fedora. So our package adds a small SELinux rule that lets the keyboard
 service read our files. Without that rule, Fedora 45 refused every layout and the login screen stayed US. With the rule,
@@ -63,25 +64,23 @@ laptop, not on a real PC.
 
 ## openSUSE
 
-**Tumbleweed and Leap 16.0: tested in test containers, and both on a desktop in a virtual machine, with SELinux on.**
+**Tumbleweed and Leap 16.0: package on the release page. Tested in test containers, and both on a desktop in a virtual machine, with SELinux on.**
 
 New openSUSE installations also use SELinux. Fedora's problem did not happen on openSUSE, but our package adds the
 same small rule, and it works there too. On Leap 16.0 (GNOME) the login screen typed Belgian, also after a restart. On
 Tumbleweed (KDE) it works too, but at the login screen Caps Lock still works the Linux way: that screen runs on X11.
 After logging in, Caps Lock works as on Windows.
 
-openSUSE has keyd itself. Type as a normal user:
+openSUSE has keyd itself. Download the two files for your version from the [0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into one folder.
+The packages are not signed. So check them first, then install them:
 
 ```
-sudo zypper install rpm-build systemd-rpm-macros git curl
-git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
-SRC=$(rpm --eval %_sourcedir); mkdir -p "$SRC"
-curl -L -o "$SRC"/belgian-azerty-linux-0.9.12.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.12.tar.gz
-for s in packaging/opensuse/*.spec; do rpmbuild -ba "$s"; done
-sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.12-*.rpm
+sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
 ```
 
-Then switch the choices on (see "Switching the choices on" below).
+On Leap 16.0 it says `leap16.0` instead of `tumbleweed`. Then switch the choices on (see "Switching the choices on"
+below). Prefer to build it yourself? The steps are in [packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
 
 ## Arch
 
@@ -126,7 +125,7 @@ To remove: `sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove`. This takes o
   SlackBuilds.org. The rules for keyd are in `keyd/be-winaltgr.conf`. This was not tested here.
 - On NixOS your configuration manages the `/etc` folder. Whether a rebuild leaves our files in place was not checked.
 
-## Switching the choices on (openSUSE, Arch and the independent systems)
+## Switching the choices on (Fedora, openSUSE, Arch and the independent systems)
 
 For the whole system, including the login screen and new users, if your system has systemd:
 

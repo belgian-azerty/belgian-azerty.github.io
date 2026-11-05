@@ -31,6 +31,8 @@ staat niet overal even ver. Hieronder zie je per systeem hoe ver.</p>
 <h3>Wat betekent de stand?</h3>
 <ul>
 <li><strong>Uitgebracht:</strong> er is een versie om te downloaden. Getest in emulators en op één echte laptop.</li>
+<li><strong>Pakket op de releasepagina:</strong> kant-en-klare pakketten om te downloaden. Getest in testcontainers en op een
+  bureaublad in een virtuele machine, nog niet op een echte pc.</li>
 <li><strong>Getest in testcontainers:</strong> getest in een afgesloten testsysteem zonder bureaublad. Er is nog niets om te
   downloaden: je bouwt het pakket zelf, met de stappen hieronder. Een test op een echt bureaublad volgt.</li>
 <li><strong>Script:</strong> geen pakket, maar een klein script. Getest in testcontainers. Werkt alleen op bureaubladen met Wayland.</li>
@@ -55,36 +57,32 @@ Mint zelf. <a class="more" href="problems.html">Wat als de upgrade al vastzit: P
 <p><strong>Op Ubuntu 26.04 (GNOME 50):</strong> verander je een toetsenbordkeuze, bijvoorbeeld Caps Lock of de accenten, meld je dan
 af en weer aan. Pas daarna werkt de nieuwe keuze. Gezien in een emulator op de testlaptop.</p>
 <h2>Fedora</h2>
-<p><strong>Fedora 44 en 45: getest in testcontainers. Fedora 45 ook op een bureaublad in een virtuele machine, met SELinux aan.</strong></p>
-<p>Fedora heeft geen keyd. Daarom bouwen deze stappen ook keyd 2.6.0, ongewijzigd uit de officiële versie. Typ als
-gewone gebruiker:</p>
-<pre><code>sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
-git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
-rpmdev-setuptree
-for s in packaging/fedora/*.spec; do spectool -g -R &quot;$s&quot; &amp;&amp; rpmbuild -ba &quot;$s&quot;; done
-R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+<p><strong>Fedora 44 en 45: pakket op de releasepagina. Getest in testcontainers. Fedora 45 ook op een bureaublad in een virtuele machine, met SELinux aan.</strong></p>
+<p>Download de drie bestanden voor jouw Fedora van de <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">releasepagina van 0.9.12</a> in één map: belgian-azerty-windows,
+keyd-belgian-windows en keyd. Fedora heeft zelf geen keyd; dit is keyd 2.6.0, ongewijzigd uit de officiële versie.
+De pakketten zijn niet ondertekend. Controleer ze daarom eerst, en installeer ze dan:</p>
+<pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 </code></pre>
-<p>Daarna, in dezelfde map: <code>sudo bash be-azerty-fix.sh system</code>. Dat zet Belgisch voorop voor het hele systeem en voor
-de bewaarde GNOME-instellingen van je gebruikers.</p>
+<p>Op Fedora 44 staat er <code>fc44</code> in plaats van <code>fc45</code>. Zet daarna de keuzes aan (zie "Keuzes aanzetten" hieronder).
+Liever zelf bouwen? De stappen staan in <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
 <p><strong>Goed om te weten:</strong> op Fedora staat SELinux standaard aan. Ons pakket voegt daarom een kleine SELinux-regel toe,
 zodat de toetsenborddienst onze bestanden mag lezen. Zonder die regel weigerde Fedora 45 elke indeling en bleef het
 aanmeldscherm Amerikaans. Met de regel typte het aanmeldscherm Belgisch, met Caps Lock zoals op Windows, en
 Ctrl+Alt+E gaf €. Getest in een virtuele machine op één laptop, niet op een echte pc.</p>
 <h2>openSUSE</h2>
-<p><strong>Tumbleweed en Leap 16.0: getest in testcontainers, en allebei op een bureaublad in een virtuele machine, met SELinux aan.</strong></p>
+<p><strong>Tumbleweed en Leap 16.0: pakket op de releasepagina. Getest in testcontainers, en allebei op een bureaublad in een virtuele machine, met SELinux aan.</strong></p>
 <p>Nieuwe installaties van openSUSE gebruiken ook SELinux. Het probleem van Fedora trad op openSUSE niet op, maar ons
 pakket voegt dezelfde kleine regel toe, en die werkt er ook. Op Leap 16.0 (GNOME) typte het aanmeldscherm Belgisch,
 ook na een herstart. Op Tumbleweed (KDE) werkt het ook, maar op het aanmeldscherm werkt Caps Lock nog op de
 Linux-manier: dat scherm draait op X11. Na het aanmelden werkt Caps Lock zoals op Windows.</p>
-<p>openSUSE heeft keyd zelf. Typ als gewone gebruiker:</p>
-<pre><code>sudo zypper install rpm-build systemd-rpm-macros git curl
-git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
-SRC=$(rpm --eval %_sourcedir); mkdir -p &quot;$SRC&quot;
-curl -L -o &quot;$SRC&quot;/belgian-azerty-linux-0.9.12.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.12.tar.gz
-for s in packaging/opensuse/*.spec; do rpmbuild -ba &quot;$s&quot;; done
-sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.12-*.rpm
+<p>openSUSE heeft keyd zelf. Download de twee bestanden voor jouw versie van de <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">releasepagina van 0.9.12</a> in één map.
+De pakketten zijn niet ondertekend. Controleer ze daarom eerst, en installeer ze dan:</p>
+<pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
 </code></pre>
-<p>Zet daarna de keuzes aan (zie "Keuzes aanzetten" hieronder).</p>
+<p>Op Leap 16.0 staat er <code>leap16.0</code> in plaats van <code>tumbleweed</code>. Zet daarna de keuzes aan (zie "Keuzes aanzetten"
+hieronder). Liever zelf bouwen? De stappen staan in <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
 <h2>Arch</h2>
 <p><strong>Arch Linux: getest in testcontainers, bureaubladtest volgt.</strong></p>
 <p>Arch heeft keyd zelf. Typ als gewone gebruiker:</p>
@@ -115,7 +113,7 @@ sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
   SlackBuilds.org. De regels voor keyd staan in <code>keyd/be-winaltgr.conf</code>. Dat is hier niet getest.</li>
 <li>Op NixOS beheert je configuratie de map <code>/etc</code>. Of een rebuild onze bestanden laat staan, is niet nagekeken.</li>
 </ul>
-<h2>Keuzes aanzetten (openSUSE, Arch en de onafhankelijke systemen)</h2>
+<h2>Keuzes aanzetten (Fedora, openSUSE, Arch en de onafhankelijke systemen)</h2>
 <p>Voor het hele systeem, ook het aanmeldscherm en nieuwe gebruikers, als je systeem systemd heeft:</p>
 <pre><code>sudo localectl set-x11-keymap be pc105 &quot;&quot; caps:be_windows,be_azerty:accents
 </code></pre>

@@ -8,6 +8,8 @@ de Linux. Tout n'en est pas au même point. Vous voyez ci-dessous où en est cha
 ### Que veut dire la situation ?
 
 - **Publié :** il y a une version à télécharger. Testé dans des émulateurs et sur un seul vrai ordinateur portable.
+- **Paquet sur la page de la version :** des paquets prêts à télécharger. Testé en conteneurs de test et sur un
+  bureau dans une machine virtuelle, pas encore sur un vrai PC.
 - **Testé en conteneurs de test :** testé dans un système de test isolé, sans bureau. Il n'y a encore rien à
   télécharger : vous construisez le paquet vous-même, avec les étapes ci-dessous. Un test sur un vrai bureau suivra.
 - **Script :** pas de paquet, mais un petit script. Testé en conteneurs de test. Ne fonctionne que sur les bureaux
@@ -44,21 +46,19 @@ l'ordinateur portable de test.
 
 ## Fedora
 
-**Fedora 44 et 45 : testé en conteneurs de test. Fedora 45 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.**
+**Fedora 44 et 45 : paquet sur la page de la version. Testé en conteneurs de test. Fedora 45 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.**
 
-Fedora n'a pas keyd. Ces étapes construisent donc aussi keyd 2.6.0, inchangé par rapport à la version officielle.
-Tapez en tant qu'utilisateur normal :
+Téléchargez les trois fichiers pour votre Fedora depuis la [page de la version 0.9.12](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) dans un même dossier :
+belgian-azerty-windows, keyd-belgian-windows et keyd. Fedora n'a pas keyd lui-même ; c'est keyd 2.6.0, inchangé par
+rapport à la version officielle. Les paquets ne sont pas signés. Vérifiez-les donc d'abord, puis installez-les :
 
 ```
-sudo dnf install rpm-build rpmdevtools gcc make kernel-headers systemd-rpm-macros git
-git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
-rpmdev-setuptree
-for s in packaging/fedora/*.spec; do spectool -g -R "$s" && rpmbuild -ba "$s"; done
-R=$(rpm --eval %_rpmdir); sudo dnf install $R/x86_64/keyd-2.6.0-*.rpm $R/noarch/*-0.9.12-*.rpm
+sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 ```
 
-Ensuite, dans le même dossier : `sudo bash be-azerty-fix.sh system`. Cela met le belge en premier pour tout le système
-et pour les réglages GNOME enregistrés de vos utilisateurs.
+Sur Fedora 44, c'est `fc44` au lieu de `fc45`. Activez ensuite les choix (voir « Activer les choix » ci-dessous).
+Vous préférez construire vous-même ? Les étapes sont dans [packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
 
 **Bon à savoir :** sur Fedora, SELinux est activé par défaut. Notre paquet ajoute donc une petite règle SELinux qui
 permet au service clavier de lire nos fichiers. Sans cette règle, Fedora 45 refusait toute disposition et l'écran de
@@ -67,7 +67,7 @@ et Ctrl+Alt+E a donné €. Testé dans une machine virtuelle sur un seul ordina
 
 ## openSUSE
 
-**Tumbleweed et Leap 16.0 : testé en conteneurs de test, et les deux sur un bureau dans une machine virtuelle, avec SELinux activé.**
+**Tumbleweed et Leap 16.0 : paquet sur la page de la version. Testé en conteneurs de test, et les deux sur un bureau dans une machine virtuelle, avec SELinux activé.**
 
 Les nouvelles installations d'openSUSE utilisent aussi SELinux. Le problème de Fedora ne s'est pas produit sur
 openSUSE, mais notre paquet ajoute la même petite règle, et elle y fonctionne aussi. Sur Leap 16.0 (GNOME), l'écran de
@@ -75,18 +75,16 @@ connexion a tapé en belge, aussi après un redémarrage. Sur Tumbleweed (KDE), 
 de connexion, Verr. Maj fonctionne encore à la manière de Linux : cet écran tourne sous X11. Après la connexion,
 Verr. Maj fonctionne comme sous Windows.
 
-openSUSE a keyd lui-même. Tapez en tant qu'utilisateur normal :
+openSUSE a keyd lui-même. Téléchargez les deux fichiers pour votre version depuis la [page de la version 0.9.12](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12)
+dans un même dossier. Les paquets ne sont pas signés. Vérifiez-les donc d'abord, puis installez-les :
 
 ```
-sudo zypper install rpm-build systemd-rpm-macros git curl
-git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-azerty-linux
-SRC=$(rpm --eval %_sourcedir); mkdir -p "$SRC"
-curl -L -o "$SRC"/belgian-azerty-linux-0.9.12.tar.gz https://github.com/belgian-azerty/belgian-azerty-linux/archive/refs/tags/v0.9.12.tar.gz
-for s in packaging/opensuse/*.spec; do rpmbuild -ba "$s"; done
-sudo zypper install --allow-unsigned-rpm $(rpm --eval %_rpmdir)/noarch/*-0.9.12-*.rpm
+sha256sum -c --ignore-missing SHA256SUMS-rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
 ```
 
-Activez ensuite les choix (voir « Activer les choix » ci-dessous).
+Sur Leap 16.0, c'est `leap16.0` au lieu de `tumbleweed`. Activez ensuite les choix (voir « Activer les choix »
+ci-dessous). Vous préférez construire vous-même ? Les étapes sont dans [packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
 
 ## Arch
 
@@ -132,7 +130,7 @@ Pour l'enlever : `sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove`. Cela n
 - Sur NixOS, votre configuration gère le dossier `/etc`. Nous n'avons pas vérifié si une reconstruction laisse nos
   fichiers en place.
 
-## Activer les choix (openSUSE, Arch et les systèmes indépendants)
+## Activer les choix (Fedora, openSUSE, Arch et les systèmes indépendants)
 
 Pour tout le système, y compris l'écran de connexion et les nouveaux utilisateurs, si votre système a systemd :
 

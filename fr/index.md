@@ -17,7 +17,7 @@ auquel vous êtes habitué sous Windows. Nous l'ajoutons avec deux petits paquet
 
 **Testé** dans des émulateurs et sur un seul ordinateur portable, pour Linux Mint 22.3 et Zorin OS 18.1.
 **Situation :** un problème ancien dont aucun projet ne s'occupe. Pas encore accepté par les projets Linux.
-**Autres Linux :** des fichiers pour Ubuntu, Debian, Fedora, openSUSE, Arch et cinq systèmes indépendants, testés en conteneurs de test.
+**Autres Linux :** des fichiers pour Ubuntu, Debian, Fedora, openSUSE, Arch et cinq systèmes indépendants, testés en conteneurs de test. Les paquets pour Fedora et openSUSE sont sur la page de la version.
 **Version :** 0.9.12, 3 novembre 2026.
 
 ### Choisissez votre chemin
