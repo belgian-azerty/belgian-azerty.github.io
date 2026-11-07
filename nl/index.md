@@ -18,7 +18,7 @@ gewend bent. Wij voegen dat toe met twee kleine pakketten en het programma keyd:
 **Getest** in emulators en op één laptop, voor Linux Mint 22.3 en Zorin OS 18.1.
 **Stand:** een oud probleem waar geen enkel project eigenaar van is. Nog niet aanvaard door de Linux-projecten.
 **Andere Linux:** bestanden voor Ubuntu, Debian, Fedora, openSUSE, Arch en vijf onafhankelijke systemen, getest in testcontainers. Pakketten voor Fedora en openSUSE staan op de releasepagina.
-**Versie:** 0.9.12, 3 november 2026.
+**Versie:** 0.9.13, 7 november 2026. Voor Mint en Zorin blijven de pakketten 0.9.12.
 
 ### Kies je weg
 

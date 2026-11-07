@@ -19,6 +19,8 @@
   connexion tape en belge, avec Verr. Maj comme sous Windows.
 - openSUSE Tumbleweed avec KDE dans une machine virtuelle, avec SELinux activé : l'écran de connexion tape en belge,
   mais avec Verr. Maj à la manière de Linux (X11). Après la connexion, comme sous Windows.
+- X11 (à partir de la 0.9.13) : Fedora 45 avec Xfce dans une machine virtuelle. Après la connexion, Verr. Maj et les
+  accents fonctionnent comme sous Windows. L'écran de connexion garde le comportement de Linux.
 
 **Pas encore testé**
 - Un vrai clavier Apple.
@@ -26,6 +28,7 @@
 - Les outils de mise à niveau d'Ubuntu et de Mint eux-mêmes.
 - D'autres systèmes que Mint et Zorin sur un vrai bureau ou un vrai PC.
 - Un deuxième clavier USB.
+- D'autres bureaux X11 que Xfce (MATE, Cinnamon, KDE sous X11).
 
 **Situation auprès des projets Linux :** rien n'est encore accepté. Quelle partie revient à quel projet : voir
 [MAINTAINERS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/MAINTAINERS.md).

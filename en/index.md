@@ -18,7 +18,7 @@ are used to from Windows. We add it with two small packages and the keyd program
 **Tested** in emulators and on one laptop, for Linux Mint 22.3 and Zorin OS 18.1.
 **Status:** a long-standing problem that no project owns. Not yet accepted by the Linux projects.
 **Other Linux:** files for Ubuntu, Debian, Fedora, openSUSE, Arch and five independent systems, tested in test containers. Packages for Fedora and openSUSE are on the release page.
-**Version:** 0.9.12, 3 November 2026.
+**Version:** 0.9.13, 7 November 2026. For Mint and Zorin the packages stay 0.9.12.
 
 ### Choose your route
 

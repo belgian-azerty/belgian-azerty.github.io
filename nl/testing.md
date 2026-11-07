@@ -17,6 +17,8 @@
   Belgisch, met Caps Lock zoals op Windows.
 - openSUSE Tumbleweed met KDE in een virtuele machine, met SELinux aan: het aanmeldscherm typt Belgisch, maar met
   Caps Lock op de Linux-manier (X11). Na het aanmelden zoals op Windows.
+- X11 (vanaf 0.9.13): Fedora 45 met Xfce in een virtuele machine. Na het aanmelden werken Caps Lock en de accenten
+  zoals op Windows. Het aanmeldscherm houdt het Linux-gedrag.
 
 **Nog niet getest**
 - Een echt Apple-toetsenbord.
@@ -24,6 +26,7 @@
 - De upgradeprogramma's van Ubuntu en Mint zelf.
 - Andere systemen dan Mint en Zorin op een echt bureaublad of een echte pc.
 - Een tweede USB-toetsenbord.
+- Andere X11-bureaubladen dan Xfce (MATE, Cinnamon, KDE op X11).
 
 **Stand bij de Linux-projecten:** nog niets aanvaard. Welk deel bij welk project hoort, staat in [MAINTAINERS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/MAINTAINERS.md).
 

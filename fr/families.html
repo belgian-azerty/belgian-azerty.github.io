@@ -24,7 +24,7 @@
   </div>
 </header>
 <main id="main">
-<p class="wrap ver">Pour la version 0.9.12 (3 novembre 2026). Dernière version : <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">page de la version</a>.</p>
+<p class="wrap ver">Pour la version 0.9.13 (7 novembre 2026). Dernière version : <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">page de la version</a>.</p>
 <article class="wrap prose"><h1>L&#x27;AZERTY belge sur cinq familles Linux</h1>
 <p>Ce projet a commencé avec Linux Mint et Zorin OS. Il y a maintenant aussi des fichiers pour les autres grandes familles
 de Linux. Tout n'en est pas au même point. Vous voyez ci-dessous où en est chaque système.</p>
@@ -35,8 +35,7 @@ de Linux. Tout n'en est pas au même point. Vous voyez ci-dessous où en est cha
   bureau dans une machine virtuelle, pas encore sur un vrai PC.</li>
 <li><strong>Testé en conteneurs de test :</strong> testé dans un système de test isolé, sans bureau. Il n'y a encore rien à
   télécharger : vous construisez le paquet vous-même, avec les étapes ci-dessous. Un test sur un vrai bureau suivra.</li>
-<li><strong>Script :</strong> pas de paquet, mais un petit script. Testé en conteneurs de test. Ne fonctionne que sur les bureaux
-  qui utilisent Wayland.</li>
+<li><strong>Script :</strong> pas de paquet, mais un petit script. Testé en conteneurs de test.</li>
 </ul>
 <h3>Partout pareil</h3>
 <p>Les trois mêmes choix que sur Mint et Zorin : Verr. Maj comme sous Windows, les accents avec Maj+AltGr comme sous
@@ -46,7 +45,9 @@ Windows, et la disposition pour un clavier Apple belge. Ctrl+Alt comme AltGr vie
 <li>Aucun fichier du système ne change. Nos deux fichiers vont dans le dossier <code>/etc/xkb</code>.</li>
 <li>Les choix n'apparaissent pas dans les réglages du clavier de votre bureau. Vous les activez avec une seule commande
   (ci-dessous).</li>
-<li>Une session X11 et la console texte ne lisent pas <code>/etc/xkb</code>. Rien n'y change.</li>
+<li>Une session X11 ne lit pas <code>/etc/xkb</code>. À partir de la 0.9.13, le programme <code>be-azerty-x11-load</code> charge donc nos
+  choix à la connexion. Testé sur Fedora 45 avec Xfce dans une machine virtuelle ; pas encore sur d'autres bureaux
+  X11. L'écran de connexion sous X11 et la console texte gardent le comportement de Linux.</li>
 </ul>
 <h2>Ubuntu et Debian</h2>
 <p><strong>Linux Mint 22.3 et Zorin OS 18.1 : publié (0.9.12).</strong> <a class="more" href="install.html">Vers l&#x27;installation ›</a></p>
@@ -61,11 +62,11 @@ déconnectez-vous puis reconnectez-vous. Ce n'est qu'après que le nouveau choix
 l'ordinateur portable de test.</p>
 <h2>Fedora</h2>
 <p><strong>Fedora 44 et 45 : paquet sur la page de la version. Testé en conteneurs de test. Fedora 45 aussi sur un bureau dans une machine virtuelle, avec SELinux activé.</strong></p>
-<p>Téléchargez les trois fichiers pour votre Fedora depuis la <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">page de la version 0.9.12</a> dans un même dossier :
+<p>Téléchargez les trois fichiers pour votre Fedora depuis la <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13">page de la version 0.9.13</a> dans un même dossier :
 belgian-azerty-windows, keyd-belgian-windows et keyd. Fedora n'a pas keyd lui-même ; c'est keyd 2.6.0, inchangé par
 rapport à la version officielle. Les paquets ne sont pas signés. Vérifiez-les donc d'abord, puis installez-les :</p>
 <pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
-sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+sudo dnf install ./belgian-azerty-windows-0.9.13-1.fc45.noarch.rpm ./keyd-belgian-windows-0.9.13-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 </code></pre>
 <p>Sur Fedora 44, c'est <code>fc44</code> au lieu de <code>fc45</code>. Activez ensuite les choix (voir « Activer les choix » ci-dessous).
 Vous préférez construire vous-même ? Les étapes sont dans <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
@@ -80,12 +81,13 @@ openSUSE, mais notre paquet ajoute la même petite règle, et elle y fonctionne 
 connexion a tapé en belge, aussi après un redémarrage. Sur Tumbleweed (KDE), cela fonctionne aussi, mais sur l'écran
 de connexion, Verr. Maj fonctionne encore à la manière de Linux : cet écran tourne sous X11. Après la connexion,
 Verr. Maj fonctionne comme sous Windows.</p>
-<p>openSUSE a keyd lui-même. Téléchargez les deux fichiers pour votre version depuis la <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">page de la version 0.9.12</a>
+<p>openSUSE a keyd lui-même. Téléchargez les deux fichiers pour votre version depuis la <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13">page de la version 0.9.13</a>
 dans un même dossier. Les paquets ne sont pas signés. Vérifiez-les donc d'abord, puis installez-les :</p>
 <pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
-sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.13-1.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.13-1.tumbleweed.noarch.rpm
 </code></pre>
-<p>Sur Leap 16.0, c'est <code>leap16.0</code> au lieu de <code>tumbleweed</code>. Activez ensuite les choix (voir « Activer les choix »
+<p>Sur Leap 16.0, c'est <code>leap16.0</code> au lieu de <code>tumbleweed</code>. Vous utilisez une session X11 ? Ajoutez alors
+<code>--recommends</code> après <code>zypper install</code>, pour que les outils X11 soient installés aussi. Activez ensuite les choix (voir « Activer les choix »
 ci-dessous). Vous préférez construire vous-même ? Les étapes sont dans <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
 <h2>Arch</h2>
 <p><strong>Arch Linux : testé en conteneurs de test, test sur bureau à venir.</strong></p>
@@ -96,10 +98,10 @@ git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd b
 (cd keyd-belgian-windows &amp;&amp; makepkg -si)
 </code></pre>
 <p>Bon à savoir : notre paquet keyd active keyd tout de suite, car c'est pour cela que vous l'installez. Sur Arch, c'est
-inhabituel.</p>
+inhabituel. Vous utilisez une session X11 ? Installez alors aussi <code>xorg-xkbcomp</code> et <code>xorg-setxkbmap</code>.</p>
 <p>Activez ensuite les choix (voir ci-dessous).</p>
 <h2>Systèmes indépendants : Void, NixOS, Gentoo, Slackware, Solus</h2>
-<p><strong>Script : testé en conteneurs de test, X11 pas encore réglé.</strong></p>
+<p><strong>Script : testé en conteneurs de test, aussi pour X11.</strong></p>
 <p>Ici, pas de paquet, mais un petit script. Il met les deux mêmes fichiers dans <code>/etc/xkb</code> et ne change rien au
 système :</p>
 <pre><code>git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
@@ -112,8 +114,10 @@ sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
 <li>Testé avec la bibliothèque de clavier et les données de clavier de chaque système. Pour Slackware et Solus, il
   n'existe pas de conteneur de test : leurs propres paquets ont été mis sur un autre système de test. Sur Slackware
   15.0, un contrôle n'a pas pu tourner, car l'outil de test a besoin d'une version plus récente.</li>
-<li>Uniquement pour les bureaux qui utilisent Wayland. Une session X11 ne lit pas <code>/etc/xkb</code>, et beaucoup de ces
-  systèmes tournent encore sous X11 (Slackware 15.0 par défaut). Il n'y a pas encore de solution pour X11.</li>
+<li>Une session X11 ne lit pas <code>/etc/xkb</code>, et beaucoup de ces systèmes tournent encore sous X11 (Slackware 15.0 par
+  défaut). À partir de la 0.9.13, le script installe donc aussi <code>be-azerty-x11-load</code>, qui charge nos choix à la
+  connexion. Il a besoin de <code>xkbcli</code>, <code>xkbcomp</code> et <code>setxkbmap</code>. Testé en conteneurs de test ; une vraie session X11
+  seulement sur Fedora 45, pas sur ces systèmes.</li>
 <li>Le script n'installe pas keyd. keyd se trouve dans Void, NixOS et Solus ; sur Gentoo dans l'overlay GURU, sur
   Slackware sur SlackBuilds.org. Les règles pour keyd sont dans <code>keyd/be-winaltgr.conf</code>. Cela n'a pas été testé ici.</li>
 <li>Sur NixOS, votre configuration gère le dossier <code>/etc</code>. Nous n'avons pas vérifié si une reconstruction laisse nos

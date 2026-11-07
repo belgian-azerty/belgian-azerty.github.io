@@ -12,7 +12,7 @@ not equally far everywhere. Below you see how far it is for each system.
   a virtual machine, not yet on a real PC.
 - **Tested in test containers:** tested in a closed-off test system without a desktop. There is nothing to download
   yet: you build the package yourself, with the steps below. A test on a real desktop will follow.
-- **Script:** not a package, but a small script. Tested in test containers. Works only on desktops that use Wayland.
+- **Script:** not a package, but a small script. Tested in test containers.
 
 ### The same everywhere
 
@@ -23,7 +23,9 @@ layout for a Belgian Apple keyboard. Ctrl+Alt as AltGr comes from keyd, with our
 
 - No file of the system changes. Our two files go into the folder `/etc/xkb`.
 - The choices do not appear in your desktop's keyboard settings. You switch them on with one command (below).
-- An X11 session and the text console do not read `/etc/xkb`. Nothing changes there.
+- An X11 session does not read `/etc/xkb`. So from 0.9.13 the program `be-azerty-x11-load` loads our choices when
+  you log in. Tested on Fedora 45 with Xfce in a virtual machine; other X11 desktops not yet. The X11 login screen and
+  the text console keep the Linux behaviour.
 
 
 ## Ubuntu and Debian
@@ -45,13 +47,13 @@ Only then does the new choice work. Seen in an emulator on the test laptop.
 
 **Fedora 44 and 45: package on the release page. Tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.**
 
-Download the three files for your Fedora from the [0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into one folder: belgian-azerty-windows,
+Download the three files for your Fedora from the [0.9.13 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13) into one folder: belgian-azerty-windows,
 keyd-belgian-windows and keyd. Fedora has no keyd of its own; this is keyd 2.6.0, unchanged from the official release.
 The packages are not signed. So check them first, then install them:
 
 ```
 sha256sum -c --ignore-missing SHA256SUMS-rpm
-sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+sudo dnf install ./belgian-azerty-windows-0.9.13-1.fc45.noarch.rpm ./keyd-belgian-windows-0.9.13-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 ```
 
 On Fedora 44 it says `fc44` instead of `fc45`. Then switch the choices on (see "Switching the choices on" below).
@@ -71,15 +73,16 @@ same small rule, and it works there too. On Leap 16.0 (GNOME) the login screen t
 Tumbleweed (KDE) it works too, but at the login screen Caps Lock still works the Linux way: that screen runs on X11.
 After logging in, Caps Lock works as on Windows.
 
-openSUSE has keyd itself. Download the two files for your version from the [0.9.12 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12) into one folder.
+openSUSE has keyd itself. Download the two files for your version from the [0.9.13 release page](https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13) into one folder.
 The packages are not signed. So check them first, then install them:
 
 ```
 sha256sum -c --ignore-missing SHA256SUMS-rpm
-sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.13-1.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.13-1.tumbleweed.noarch.rpm
 ```
 
-On Leap 16.0 it says `leap16.0` instead of `tumbleweed`. Then switch the choices on (see "Switching the choices on"
+On Leap 16.0 it says `leap16.0` instead of `tumbleweed`. Using an X11 session? Then add `--recommends` after
+`zypper install`, so the X11 helper tools come along. Then switch the choices on (see "Switching the choices on"
 below). Prefer to build it yourself? The steps are in [packaging/OTHER-DISTRIBUTIONS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md).
 
 ## Arch
@@ -96,13 +99,13 @@ git clone https://github.com/belgian-azerty/belgian-azerty-linux && cd belgian-a
 ```
 
 Good to know: our keyd package switches keyd on straight away, because that is why you install it. On Arch this is
-unusual.
+unusual. Using an X11 session? Then also install `xorg-xkbcomp` and `xorg-setxkbmap`.
 
 Then switch the choices on (see below).
 
 ## Independent systems: Void, NixOS, Gentoo, Slackware, Solus
 
-**Script: tested in test containers, X11 still open.**
+**Script: tested in test containers, also for X11.**
 
 Here there is no package, but a small script. It puts the same two files in `/etc/xkb` and changes nothing in the
 system:
@@ -119,8 +122,10 @@ To remove: `sudo sh packaging/etc-xkb/be-azerty-etc-xkb.sh remove`. This takes o
 - Tested with each system's own keyboard library and keyboard data. For Slackware and Solus there is no test
   container: their own packages were put on another test system. On Slackware 15.0 one check could not run, because the
   test tool needs a newer version.
-- Only for desktops that use Wayland. An X11 session does not read `/etc/xkb`, and many of these systems still run X11
-  (Slackware 15.0 by default). There is no solution for X11 yet.
+- An X11 session does not read `/etc/xkb`, and many of these systems still run X11 (Slackware 15.0 by default). So
+  from 0.9.13 the script also sets up `be-azerty-x11-load`, which loads our choices when you log in. It needs
+  `xkbcli`, `xkbcomp` and `setxkbmap`. Tested in test containers; a real X11 session only on Fedora 45, not on these
+  systems.
 - The script does not set up keyd. keyd is in Void, NixOS and Solus; on Gentoo in the GURU overlay, on Slackware on
   SlackBuilds.org. The rules for keyd are in `keyd/be-winaltgr.conf`. This was not tested here.
 - On NixOS your configuration manages the `/etc` folder. Whether a rebuild leaves our files in place was not checked.

@@ -17,6 +17,8 @@
   Belgian, with Caps Lock as on Windows.
 - openSUSE Tumbleweed with KDE in a virtual machine, with SELinux on: the login screen types Belgian, but with Caps
   Lock the Linux way (X11). After logging in, as on Windows.
+- X11 (from 0.9.13): Fedora 45 with Xfce in a virtual machine. After logging in, Caps Lock and the accents work as on
+  Windows. The login screen keeps the Linux behaviour.
 
 **Not yet tested**
 - A real Apple keyboard.
@@ -24,6 +26,7 @@
 - Ubuntu's and Mint's own upgrade tools.
 - Systems other than Mint and Zorin on a real desktop or a real PC.
 - A second USB keyboard.
+- X11 desktops other than Xfce (MATE, Cinnamon, KDE on X11).
 
 **Status with the Linux projects:** nothing accepted yet. Which part belongs to which project is in [MAINTAINERS.md](https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/MAINTAINERS.md).
 

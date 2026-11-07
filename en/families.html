@@ -24,7 +24,7 @@
   </div>
 </header>
 <main id="main">
-<p class="wrap ver">For version 0.9.12 (3 November 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
+<p class="wrap ver">For version 0.9.13 (7 November 2026). Newest version: <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/latest">release page</a>.</p>
 <article class="wrap prose"><h1>Belgian AZERTY on five Linux families</h1>
 <p>This project started with Linux Mint and Zorin OS. There are now also files for the other big families of Linux. It is
 not equally far everywhere. Below you see how far it is for each system.</p>
@@ -35,7 +35,7 @@ not equally far everywhere. Below you see how far it is for each system.</p>
   a virtual machine, not yet on a real PC.</li>
 <li><strong>Tested in test containers:</strong> tested in a closed-off test system without a desktop. There is nothing to download
   yet: you build the package yourself, with the steps below. A test on a real desktop will follow.</li>
-<li><strong>Script:</strong> not a package, but a small script. Tested in test containers. Works only on desktops that use Wayland.</li>
+<li><strong>Script:</strong> not a package, but a small script. Tested in test containers.</li>
 </ul>
 <h3>The same everywhere</h3>
 <p>The same three choices as on Mint and Zorin: Caps Lock as on Windows, the Shift+AltGr accents as on Windows, and the
@@ -44,7 +44,9 @@ layout for a Belgian Apple keyboard. Ctrl+Alt as AltGr comes from keyd, with our
 <ul>
 <li>No file of the system changes. Our two files go into the folder <code>/etc/xkb</code>.</li>
 <li>The choices do not appear in your desktop's keyboard settings. You switch them on with one command (below).</li>
-<li>An X11 session and the text console do not read <code>/etc/xkb</code>. Nothing changes there.</li>
+<li>An X11 session does not read <code>/etc/xkb</code>. So from 0.9.13 the program <code>be-azerty-x11-load</code> loads our choices when
+  you log in. Tested on Fedora 45 with Xfce in a virtual machine; other X11 desktops not yet. The X11 login screen and
+  the text console keep the Linux behaviour.</li>
 </ul>
 <h2>Ubuntu and Debian</h2>
 <p><strong>Linux Mint 22.3 and Zorin OS 18.1: released (0.9.12).</strong> <a class="more" href="install.html">Go to install ›</a></p>
@@ -59,11 +61,11 @@ stops half-way. Tested with a full package upgrade in test containers, not with 
 Only then does the new choice work. Seen in an emulator on the test laptop.</p>
 <h2>Fedora</h2>
 <p><strong>Fedora 44 and 45: package on the release page. Tested in test containers. Fedora 45 also on a desktop in a virtual machine, with SELinux on.</strong></p>
-<p>Download the three files for your Fedora from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">0.9.12 release page</a> into one folder: belgian-azerty-windows,
+<p>Download the three files for your Fedora from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13">0.9.13 release page</a> into one folder: belgian-azerty-windows,
 keyd-belgian-windows and keyd. Fedora has no keyd of its own; this is keyd 2.6.0, unchanged from the official release.
 The packages are not signed. So check them first, then install them:</p>
 <pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
-sudo dnf install ./belgian-azerty-windows-0.9.12-2.fc45.noarch.rpm ./keyd-belgian-windows-0.9.12-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
+sudo dnf install ./belgian-azerty-windows-0.9.13-1.fc45.noarch.rpm ./keyd-belgian-windows-0.9.13-1.fc45.noarch.rpm ./keyd-2.6.0-1.belgianazerty.fc45.x86_64.rpm
 </code></pre>
 <p>On Fedora 44 it says <code>fc44</code> instead of <code>fc45</code>. Then switch the choices on (see "Switching the choices on" below).
 Prefer to build it yourself? The steps are in <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
@@ -77,12 +79,13 @@ laptop, not on a real PC.</p>
 same small rule, and it works there too. On Leap 16.0 (GNOME) the login screen typed Belgian, also after a restart. On
 Tumbleweed (KDE) it works too, but at the login screen Caps Lock still works the Linux way: that screen runs on X11.
 After logging in, Caps Lock works as on Windows.</p>
-<p>openSUSE has keyd itself. Download the two files for your version from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.12">0.9.12 release page</a> into one folder.
+<p>openSUSE has keyd itself. Download the two files for your version from the <a href="https://github.com/belgian-azerty/belgian-azerty-linux/releases/tag/v0.9.13">0.9.13 release page</a> into one folder.
 The packages are not signed. So check them first, then install them:</p>
 <pre><code>sha256sum -c --ignore-missing SHA256SUMS-rpm
-sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.12-2.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.12-1.tumbleweed.noarch.rpm
+sudo zypper install --allow-unsigned-rpm ./belgian-azerty-windows-0.9.13-1.tumbleweed.noarch.rpm ./keyd-belgian-windows-0.9.13-1.tumbleweed.noarch.rpm
 </code></pre>
-<p>On Leap 16.0 it says <code>leap16.0</code> instead of <code>tumbleweed</code>. Then switch the choices on (see "Switching the choices on"
+<p>On Leap 16.0 it says <code>leap16.0</code> instead of <code>tumbleweed</code>. Using an X11 session? Then add <code>--recommends</code> after
+<code>zypper install</code>, so the X11 helper tools come along. Then switch the choices on (see "Switching the choices on"
 below). Prefer to build it yourself? The steps are in <a href="https://github.com/belgian-azerty/belgian-azerty-linux/blob/main/packaging/OTHER-DISTRIBUTIONS.md">packaging/OTHER-DISTRIBUTIONS.md</a>.</p>
 <h2>Arch</h2>
 <p><strong>Arch Linux: tested in test containers, desktop test to follow.</strong></p>
@@ -93,10 +96,10 @@ git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd b
 (cd keyd-belgian-windows &amp;&amp; makepkg -si)
 </code></pre>
 <p>Good to know: our keyd package switches keyd on straight away, because that is why you install it. On Arch this is
-unusual.</p>
+unusual. Using an X11 session? Then also install <code>xorg-xkbcomp</code> and <code>xorg-setxkbmap</code>.</p>
 <p>Then switch the choices on (see below).</p>
 <h2>Independent systems: Void, NixOS, Gentoo, Slackware, Solus</h2>
-<p><strong>Script: tested in test containers, X11 still open.</strong></p>
+<p><strong>Script: tested in test containers, also for X11.</strong></p>
 <p>Here there is no package, but a small script. It puts the same two files in <code>/etc/xkb</code> and changes nothing in the
 system:</p>
 <pre><code>git clone https://github.com/belgian-azerty/belgian-azerty-linux &amp;&amp; cd belgian-azerty-linux
@@ -109,8 +112,10 @@ sh packaging/etc-xkb/be-azerty-etc-xkb.sh status
 <li>Tested with each system's own keyboard library and keyboard data. For Slackware and Solus there is no test
   container: their own packages were put on another test system. On Slackware 15.0 one check could not run, because the
   test tool needs a newer version.</li>
-<li>Only for desktops that use Wayland. An X11 session does not read <code>/etc/xkb</code>, and many of these systems still run X11
-  (Slackware 15.0 by default). There is no solution for X11 yet.</li>
+<li>An X11 session does not read <code>/etc/xkb</code>, and many of these systems still run X11 (Slackware 15.0 by default). So
+  from 0.9.13 the script also sets up <code>be-azerty-x11-load</code>, which loads our choices when you log in. It needs
+  <code>xkbcli</code>, <code>xkbcomp</code> and <code>setxkbmap</code>. Tested in test containers; a real X11 session only on Fedora 45, not on these
+  systems.</li>
 <li>The script does not set up keyd. keyd is in Void, NixOS and Solus; on Gentoo in the GURU overlay, on Slackware on
   SlackBuilds.org. The rules for keyd are in <code>keyd/be-winaltgr.conf</code>. This was not tested here.</li>
 <li>On NixOS your configuration manages the <code>/etc</code> folder. Whether a rebuild leaves our files in place was not checked.</li>

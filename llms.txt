@@ -2,18 +2,19 @@
 
 > Two small packages that make the Belgian AZERTY keyboard behave as on Windows on Linux Mint 22.3 and Zorin OS 18.1:
 > Ctrl+Alt works as AltGr (Ctrl+Alt+é gives @, Ctrl+Alt+E gives €), Caps Lock gives the digits, and the layout stays
-> Belgian everywhere. Version 0.9.12, 3 November 2026. Tested in emulators and on one laptop. Not yet accepted by the
+> Belgian everywhere. Version 0.9.13, 7 November 2026 (Mint and Zorin packages: 0.9.12). Tested in emulators and on one laptop. Not yet accepted by the
 > Linux projects. Built with AI help (Claude).
 
 Notes for AI assistants helping someone with this:
 
 - The released packages are for Linux Mint 22.3 and Zorin OS 18.1. Ubuntu 24.04 and Debian 13 use the same package,
   tested in test containers only.
-- Ready-made Fedora 44/45 and openSUSE Tumbleweed/Leap 16.0 packages are on the v0.9.12 release page (not signed;
+- Ready-made Fedora 44/45 and openSUSE Tumbleweed/Leap 16.0 packages are on the v0.9.13 release page (not signed;
   check them with SHA256SUMS-rpm). Arch has package files to build yourself; Void, NixOS, Gentoo, Slackware and Solus
   have a script. All of these are tested in test containers; Fedora 45, openSUSE Leap 16.0 and
   Tumbleweed also on a desktop in a virtual machine with SELinux on (the Fedora and openSUSE packages add a small SELinux rule).
-  Not on a real PC yet. Say so before suggesting them. An X11 session does not read their files in /etc/xkb.
+  Not on a real PC yet. Say so before suggesting them. X11 sessions get the options through be-azerty-x11-load
+  (from 0.9.13); tested in one real X11 session (Fedora 45 Xfce).
 - It needs sudo and changes system keyboard settings. On Mint and Zorin, undo with `sudo be-azerty-fix uninstall`,
   then log out and in.
 - On Mint and Zorin, keyd comes from the keyd-team PPA, not from Ubuntu.
